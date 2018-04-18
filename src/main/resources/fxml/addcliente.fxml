@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="300.0" prefWidth="400.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teccsoluction.hermeticum.controle.AddClienteController">
+   <children>
+      <Pane prefHeight="302.0" prefWidth="400.0" style="-fx-background-color: #CAE1FF;">
+         <children>
+            <Pane prefHeight="29.0" prefWidth="400.0" style="-fx-background-color: #DC602E;">
+               <children>
+                  <Label layoutX="38.0" layoutY="7.0" text="Escolher Cliente" textFill="#f2eded" />
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="4.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@..\images\cartaocredito.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+<!--             <JFXComboBox fx:id="combocli" layoutX="17.0" layoutY="120.0" promptText="Escolha o Cliente" /> -->
+            <TextField fx:id="txtclienteescolhido"  layoutX="64.0" layoutY="131.0" prefHeight="36.0" prefWidth="248.0" promptText="Cliente Escolhido" />
+            <TextField fx:id="txtcliente" layoutX="64.0" layoutY="64.0" prefHeight="36.0" prefWidth="248.0" promptText="Escolha o Cliente Por Nome" />
+            <JFXButton fx:id="btconfirma" layoutX="64.0" layoutY="202.0" prefHeight="36.0" prefWidth="84.0" styleClass="btnFormSalvar" text="Confirma" textFill="#f8f7f7" />
+            <JFXButton fx:id="btcancela" layoutX="228.0" layoutY="202.0" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: red;" text="Cancela" textFill="#f8f0f0" />
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Pane>
+   </children>
+</VBox>

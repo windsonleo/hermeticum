@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane style="-fx-background-color: transparent; -fx-background-radius: 10;" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teccsoluction.hermeticum.controle.FinalizaVendaController">
+   <top>
+      <Pane style="-fx-background-color: grey;">
+         <children>
+            <Pane prefHeight="32.0" prefWidth="833.0" style="-fx-background-color: white; -fx-min-width: 100%;">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/finan.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="50.0" layoutY="5.0" text="Finalizar Venda" textFill="#dd9623">
+                     <font>
+                        <Font name="Forte" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <GridPane focusTraversable="true" hgap="10.0" layoutY="37.0">
+              <columnConstraints>
+                <ColumnConstraints fillWidth="false" halignment="LEFT" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="259.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fillHeight="false" valignment="CENTER" />
+                <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" valignment="CENTER" />
+                <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" valignment="CENTER" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" valignment="CENTER" />
+              </rowConstraints>
+               <children>
+                  <Label text="R$ SUB TOTAL" textFill="#ebe5e5">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="txtsubtotal" text="300,00" textFill="#ebe5e5" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label contentDisplay="CENTER" text="R$ DESCONTOS ITENS" textFill="#ebe5e5" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="txtdescontoitem" text="300,00" textFill="#ebe5e5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label contentDisplay="CENTER" text="R$ DESCONTOS GERAIS" textFill="#ebe5e5" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="txtdescontogeral" text="300,00" textFill="#ebe5e5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label contentDisplay="CENTER" text="R$ ACRESCIMOS" textFill="#ebe5e5" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="txtacrescimo" text="300,00" textFill="#ebe5e5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </GridPane>
+            <Pane layoutX="618.0" layoutY="15.0" prefHeight="138.0" prefWidth="215.0">
+               <children>
+                  <Label layoutX="-31.0" layoutY="28.0" text="TOTAL A PAGAR" textFill="#f8d02f">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <Label fx:id="txttotalapagar" layoutX="56.0" layoutY="71.0" text="50,00" textFill="#26da0e">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="-10.0" layoutY="71.0" text="R$" textFill="#26da0e">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Pane>
+   </top>
+   <center>
+      <VBox style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <HBox fillHeight="false" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="btdinheiro" onAction="#dinheiro" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: GREEN;" text="DINHEIRO" textFill="#fbf9f9">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/dinheiro.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btcredito" onAction="#cartao" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: BLUE;" text="CREDITO" textFill="#fbf3f3">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cartaocredito.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btdebito" onAction="#debito" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: grey;" text="DEBITTO" textFill="#f1eded">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cartaodeb.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btoutros" onAction="#outros" prefHeight="70.0" prefWidth="140.0" style="-fx-background-color: ORANGE;" text="OUTROS" textFill="#fff5f5">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/outros.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </HBox>
+            <TableView fx:id="tabelaforma" editable="true" prefHeight="150.0" style="-fx-background-color: white; -fx-control-inner-background: white;" VBox.vgrow="SOMETIMES">
+              <columns>
+                <TableColumn fx:id="colFormaId" prefWidth="75.0" text="Seq" />
+                <TableColumn fx:id="colFormaNome" prefWidth="75.0" text="Forma Pagamento" />
+                  <TableColumn fx:id="colFormaTipo" prefWidth="75.0" text="Tipo" />
+                   <TableColumn fx:id="colIFormaValorPago" prefWidth="75.0" text="Valor" />
+                  <TableColumn fx:id="colIFormaPArcela" prefWidth="75.0" text="Parcela" />
+              </columns>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox style="-fx-background-color: transparent;" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <HBox fillHeight="false" style="-fx-background-color: #DC602E; -fx-border-color: white;">
+               <children>
+                  <Pane HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label layoutX="11.0" layoutY="14.0" text="TOTAL A PAGAR" textFill="#fffefe">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label layoutX="24.0" layoutY="65.0" text="RS: " textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txttotalabaixo" layoutX="58.0" layoutY="65.0" text="300,00" textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label layoutX="17.0" layoutY="14.0" text="VALOR PAGO" textFill="#fffefe">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label fx:id="txttotalpago" layoutX="60.0" layoutY="64.0" text="300,00" textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="64.0" text="RS: " textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label layoutX="18.0" layoutY="14.0" text="SALDO A PAGAR" textFill="#fffefe">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label layoutX="32.0" layoutY="63.0" text="RS: " textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtsaldoapagar" layoutX="68.0" layoutY="63.0" text="300,00" textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label layoutX="29.0" layoutY="14.0" text="TROCO" textFill="#fffefe">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label layoutX="12.0" layoutY="60.0" text="RS: " textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txttroco" layoutX="49.0" layoutY="60.0" text="300,00" textFill="#fdffff">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <ToolBar>
+               <items>
+                  <JFXButton fx:id="btcancela" onAction="#CancelaForma" style="-fx-background-color: red;" text="CANCELAR" textFill="#f8f4f4" />
+                  <JFXTextField promptText="Vendedor" />
+                  <JFXButton fx:id="btconfirma" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" onAction="#confirmaForma" style="-fx-background-color: GREEN;" text="CONFIRMAR" textFill="#fbf6f6" />
+               </items>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ToolBar>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+   <effect>
+      <InnerShadow />
+   </effect>
+</BorderPane>

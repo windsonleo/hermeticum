@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teccsoluction.hermeticum.controle.PdvController">
+   <children>
+      <AnchorPane style="-fx-background-color: #DC602E; -fx-background-radius: 10;">
+         <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Circle fx:id="circulo" fill="DIMGRAY" layoutX="97.0" layoutY="65.0" radius="39.0" stroke="#eeeaea" strokeType="INSIDE" />
+                        <ImageView fx:id="imgviewusuario" fitHeight="66.0" fitWidth="78.0" layoutX="64.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image fx:id="imgsusuario" url="@../images/usuario/wind.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="txtusuarionome" layoutX="31.0" layoutY="104.0" text="Windson" textFill="#f5eeee">
+                           <font>
+                              <Font name="Forte" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </AnchorPane>
+                  <AnchorPane VBox.vgrow="ALWAYS">
+                     <children>
+                        <ToolBar orientation="VERTICAL" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <items>
+                              <Pane style="-fx-background-radius: 10;">
+                                 <children>
+                                    <Label fx:id="txthora" layoutX="25.0" text="11:30:55" textFill="#f8f5f5">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane style="-fx-background-radius: 10;">
+                                 <children>
+                                    <JFXTextField alignment="CENTER" focusColor="#f6f8fb" labelFloat="true" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="154.0" promptText="Pesquisar" unFocusColor="#141414" />
+                                    <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="162.0" layoutY="12.0" text="Button">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/find.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                              </Pane>
+                              <JFXButton fx:id="btempresa" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaoempresa" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Empresa">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/company.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btfuncionario" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaofuncionario" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Funcionario">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/funcionarios.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btfornecedor" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaofornecedor" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Fornecedor">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/forne.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btcategoria" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaocategoria" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Categoria">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/categ.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btproduto" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaoproduto" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Produto">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/produtos.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btpdv" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaopdv" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Pdv">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/box.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btfinanceiro" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaofinanceiro" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Financeiro">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/finan.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btcompras" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaopedidocompra" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Compras">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/compras.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btusuario" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaousuario" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Usuario">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/usuarios.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btcliente" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaocliente" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Cliente">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/clientess.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btestoque" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaoestoque" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Estoque">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/estoque.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btvendas" alignment="TOP_LEFT" graphicTextGap="40.0" onAction="#movimentacaopedidovenda" prefHeight="32.0" prefWidth="200.0" ripplerFill="#e8e7e7" styleClass="btnMenu" text="Vendas">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/vendas.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <ToolBar style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <items>
+                              <JFXButton fx:id="bttrocarusuario" contentDisplay="GRAPHIC_ONLY" onAction="#trocarusuario" styleClass="btnMenu">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/change.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="bteditarusuario" contentDisplay="GRAPHIC_ONLY" onAction="#editarusuario" styleClass="btnMenu">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/edt.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btconfiguracao" contentDisplay="GRAPHIC_ONLY" onAction="#movimentacaoconfiguracao" styleClass="btnMenu">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/sett.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btexit" contentDisplay="GRAPHIC_ONLY" onAction="#logout" styleClass="btnMenu">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/off.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </items>
+                        </ToolBar>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane style="-fx-background-color: #333333;">
+         <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane nodeOrientation="RIGHT_TO_LEFT">
+                     <children>
+                        <ImageView fx:id="imgviewempresa" fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image fx:id="imgsempresa" url="@../images/empresa/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Circle fx:id="circuloemp" fill="DIMGRAY" layoutX="27.0" layoutY="25.0" radius="24.0" stroke="#eeeaea" strokeType="INSIDE" />
+                        <Label fx:id="empresanome" layoutX="62.0" layoutY="11.0" text="Empresa Nome " textFill="#fcf7f7">
+                           <font>
+                              <Font name="Forte" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="3.0" layoutY="20.0" text="Hermeticus" textFill="#dc602e">
+                           <font>
+                              <Font name="Forte" size="36.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="171.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/enterr.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="txtcontext" layoutX="208.0" layoutY="24.0" text="Label" textFill="#dc602e">
+                           <font>
+                              <Font name="Forte" size="36.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="181.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/enterr.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <HBox>
+                     <children>
+                        <ToolBar orientation="VERTICAL" style="-fx-background-color: #999999; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+                           <items>
+                              <JFXButton fx:id="btabrecupom" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#abrecupom" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Abre Cupom" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/abrircupom.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btaddcliente" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#addcliente" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Add Cliente" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\addcli.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="bttrocaroperador" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#trocaroperador" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Trocar Operador" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btfinalizavenda" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#finalizavenda" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Finaliza Venda" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btcancelaitem" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#cancelaitem" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Cancela Item" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btcancelacupom" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#cancelacupom" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Cancela Cupom" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btreimprimir" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#reimprimir" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Reimpressao" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btalteraquantidade" alignment="TOP_LEFT" onAction="#alteraquantidade" prefHeight="50.0" prefWidth="150.0" styleClass="btnMenu" text="Altera Quantidade" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btpesquisaproduto" alignment="TOP_LEFT" onAction="#pesquisaproduto" prefHeight="50.0" prefWidth="150.0" styleClass="btnMenu" text="Pesquisa Produto" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btencerracaixa" alignment="TOP_LEFT" onAction="#encerracaixa" prefHeight="50.0" prefWidth="150.0" styleClass="btnMenu" text="Encerar Caixa" textFill="#eeeeee" wrapText="true">
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@..\images\trocaroperador.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </items>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" top="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <Lighting diffuseConstant="1.21">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ToolBar>
+                        <Pane focusTraversable="true" style="-fx-background-color: #CCCCCC;" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <JFXTextField fx:id="totalvenda" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="322.0" layoutY="308.0" prefHeight="51.0" prefWidth="206.0" promptText="Total Venda" unFocusColor="#e8e5e5">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="totalitems" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="12.0" layoutY="302.0" prefHeight="51.0" prefWidth="213.0" promptText="Qtd Items" unFocusColor="#e8e5e5">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="descricao" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="16.0" layoutY="105.0" prefHeight="41.0" prefWidth="523.0" promptText="Descricao" unFocusColor="#ebe7e7">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="valortotal" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="333.0" layoutY="192.0" prefHeight="51.0" prefWidth="199.0" promptText="Valor Total" unFocusColor="#f8f7f7">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXTextField>
+                              <TextField fx:id="codigobarra" layoutX="17.0" layoutY="21.0" prefHeight="51.0" prefWidth="337.0" promptText="Codigo de Barras">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="qtd" layoutX="397.0" layoutY="21.0" prefHeight="51.0" prefWidth="140.0" promptText="Qtd">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </TextField>
+                              <JFXTextField fx:id="valorunitario" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="16.0" layoutY="192.0" prefHeight="51.0" prefWidth="211.0" promptText="Valor Unitario" unFocusColor="#ebe7e7">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 
+                                                   </JFXTextField>
+                              <JFXButton fx:id="additem" layoutX="424.0" layoutY="380.0" prefHeight="42.0" prefWidth="87.0" styleClass="btnFormSalvar" text="Add Item" textFill="#fffdfd" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="5.0" top="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Pane>
+                        <Pane focusTraversable="true" style="-fx-background-color: #CCCCCC; -fx-background-radius: 10;">
+                           <children>
+                              <Pane focusTraversable="true" layoutX="9.0" layoutY="24.0" prefHeight="400.0" prefWidth="387.0" style="-fx-background-color: #FFFACD;">
+                                 <children>
+                                    <Label layoutX="146.0" layoutY="52.0" text="CUPOM FISCAL">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="21.0" text="NOME CLIENTE:">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="cupomnome" layoutX="87.0" layoutY="20.0" text="FULANO DE TAL">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="31.0" text="END CLIENTE :">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="cupomend" layoutX="84.0" layoutY="31.0" text="RUA FULANO DE TAL">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="cupomdata" layoutX="43.0" layoutY="11.0" text="25/03/2018   18:59:33">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="12.0" text="DATA:">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="cupomtabela" cacheHint="QUALITY" layoutX="9.0" layoutY="81.0" prefHeight="291.0" prefWidth="373.0" style="-fx-background-color: white; -fx-control-inner-background: white;" tableMenuButtonVisible="true">
+                                      <columns>
+                  <!--                     <TableColumn fx:id="colItemId" prefWidth="75.0" text="id" /> -->
+                                        <TableColumn fx:id="colItemCode" prefWidth="75.0" text="codigo" />
+                                        <TableColumn fx:id="colItemDescricao" prefWidth="75.0" text="descricao" />
+                                          <TableColumn fx:id="colItemQtd" prefWidth="75.0" text="qtd" />
+                                          <TableColumn fx:id="colItemValorUnitario" prefWidth="75.0" text="Valor Unit" />
+                                          <TableColumn fx:id="colItemValorTotal" prefWidth="75.0" text="Valor Total" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                  
+                                    </TableView>
+                                    <Label layoutX="15.0" layoutY="41.0" text="OPERADOR:">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="cupomoperador" layoutX="69.0" layoutY="41.0" text="OPERADOR:">
+                                       <font>
+                                          <Font name="Lucida Sans Unicode" size="9.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Label fx:id="retorno" alignment="TOP_LEFT" layoutX="69.0" layoutY="421.0" text="Retorno: " />
+                              <Label layoutX="14.0" layoutY="420.0" text="Retorno :" />
+                              
+                             <Label fx:id="pdv" alignment="TOP_LEFT" layoutX="69.0" layoutY="421.0" text="Pdv" visible="false" />
+                              
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </HBox.margin>
+                        </Pane>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <HBox.margin>
+            <Insets bottom="10.0" right="5.0" top="10.0" />
+         </HBox.margin>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+   </padding>
+</HBox>

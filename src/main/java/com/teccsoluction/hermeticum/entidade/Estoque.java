@@ -1,0 +1,241 @@
+package com.teccsoluction.hermeticum.entidade;
+
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Map;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Table;
+
+import com.teccsoluction.hermeticum.framework.BaseEntity;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name = "ESTOQUE")
+public class Estoque extends BaseEntity  implements Serializable {
+
+
+    private static final long serialVersionUID = 1L;
+
+
+    @Column(name = "nome", nullable = false)
+    private String nome;
+ 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "itens_estoque", joinColumns = @JoinColumn(name = "id"))
+//    @Lob
+    @Column(name = "qtd")
+    @MapKeyColumn(name = "idit")
+    private Map<Item, String> items;
+
+
+    public Estoque() {
+
+    	
+    }
+
+
+
+    @Override
+    public String toString() {
+        return nome.toUpperCase();
+    }
+
+    
+    
+    public void AddProdutoEstoque(Item produto, BigDecimal qtd) {
+
+        String vantigo="0.00";
+        BigDecimal vnovo = qtd;
+        BigDecimal novo = new BigDecimal("0.00");
+        BigDecimal antigo = new BigDecimal("0.00");
+        
+//        Map<Item,String> pcitens = getItems();
+//        
+//        for (Item key : pcitens.keySet()) {
+//        	
+//       	 vantigo = pcitens.get(key);
+//
+//            antigo = new BigDecimal(vantigo);
+//
+//            novo = novo.add(antigo).subtract(vnovo);
+//
+//       	
+//      	            if (key.getId().equals(produto.getId())) {
+//      	            	
+//      	            	pcitens.replace(produto,vantigo,novo.toString());
+//      	            	
+//      	            }else{
+//      	            	
+//      	         	novo = novo.add(antigo).subtract(vnovo);
+//      	         	pcitens.put(produto, novo.toString());
+//      	        	
+//      	        	       	            	
+//      	            }
+//      	            
+//       }
+//        
+//        setItems(pcitens);
+//        items.putAll(pcitens);
+
+
+        if (getItems().containsKey(produto)) {
+            
+            vantigo = getItems().get(produto);
+
+            antigo = new BigDecimal(vantigo);
+
+            novo = novo.add(antigo).add(vnovo);
+
+            items.replace(produto,antigo.toString(),novo.toString());
+//            items.remove(produto);
+        	
+        }else {
+        	
+        	
+        	  novo = novo.add(antigo).add(vnovo);	
+        	  items.put(produto, novo.toString());
+        	
+        }
+
+    }
+
+    public void RetirarProdutoEstoque(Item produto, BigDecimal qtd) {
+
+        String vantigo="0.00";
+        BigDecimal vnovo = qtd;
+        BigDecimal novo = new BigDecimal("0.00");
+        BigDecimal antigo = new BigDecimal("0.00");
+        
+        if (getItems().containsKey(produto)) {
+//        
+            vantigo = getItems().get(produto);
+//
+            antigo = new BigDecimal(vantigo);
+//
+            novo = novo.add(antigo).subtract(vnovo);
+//
+            items.replace(produto,vantigo,novo.toString());
+////            items.remove(produto);
+//        	
+//        	
+       }else {
+//        	
+////        	
+       	  novo = novo.add(antigo).subtract(vnovo);
+       	  items.put(produto, novo.toString());
+//        	
+//        	AddProdutoEstoque(produto, qtd);
+        	
+        }
+
+//        for (Item key : getItems().keySet()) {
+//
+////            if (key.getId() == (produto.getId())) {
+//        	
+//        	
+//        	
+//        	if (getItems().containsKey(produto)) {
+//
+//                vantigo = getItems().get(key);
+//
+//                antigo = new BigDecimal(vantigo);
+//
+//                novo = antigo.add(vnovo).subtract(vnovo);
+//
+//                items.put(key, novo.toString());
+//            }
+//
+//        }
+//
+//        if (!getItems().containsKey(produto)) {
+//
+////            vnovo = qtd;
+////            BigDecimal qtdnegativa = vnovo;
+//            items.put(produto, vnovo.toString());
+//        }
+        
+//        Map<Item,String> pcitens = getItems();
+//        for (Item key : pcitens.keySet()) {
+//        	
+//        	 vantigo = pcitens.get(key);
+//
+//             antigo = new BigDecimal(vantigo);
+//
+//             novo = novo.add(antigo).subtract(vnovo);
+//
+//        	
+//       	            if (key.getId() == (produto.getId())) {
+//       	            	
+//       	            	pcitens.replace(produto,vantigo,novo.toString());
+//       	            	
+//       	            }else{
+//       	            	
+//       	         	novo = novo.add(antigo).subtract(vnovo);
+//       	         	pcitens.put(produto, novo.toString());
+//       	        	
+//       	        	       	            	
+//       	            }
+//       	            
+//        }
+//       
+//        setItems(pcitens);
+//        items.putAll(pcitens);
+        
+    }
+
+
+    public BigDecimal CalcularTotalCusto() {
+
+        BigDecimal totalpedido = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
+
+
+        for (Item key : getItems().keySet()) {
+
+            String qtd = getItems().get(key);
+
+//            String qtdstring = BigDecimal.valueOf(qtd);
+
+            BigDecimal quantidadef = new BigDecimal(qtd);
+
+            totalpedido = totalpedido.add(key.getPrecoCusto().multiply(quantidadef));
+        }
+
+        return totalpedido;
+    }
+
+    public BigDecimal CalcularTotalVenda() {
+
+        BigDecimal totalpedido = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
+
+        for (Item key : getItems().keySet()) {
+
+            String qtd = getItems().get(key);
+
+            BigDecimal quantidadef = new BigDecimal(qtd);
+
+            totalpedido = totalpedido.add(key.getPrecoUnitario().multiply(quantidadef));
+
+        }
+        return totalpedido;
+
+    }
+
+
+}
+

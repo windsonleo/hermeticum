@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import de.jensd.fx.glyphs.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" fillWidth="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="527.0" prefWidth="613.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teccsoluction.hermeticum.controle.LoginController">
+   <children>
+      <HBox style="-fx-background-color: #696969;">
+         <children>
+            <Pane prefHeight="500.0" prefWidth="230.0" style="-fx-background-color: #DC602E; -fx-background-radius: 10;" HBox.hgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="83.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/hermeticum.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="38.0" layoutY="146.0" text="HERMETECH" textFill="#fcfafa" textOverrun="CLIP">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="-25.0" top="-25.0" />
+               </HBox.margin>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Pane>
+            <Pane HBox.hgrow="SOMETIMES">
+               <children>
+                  <JFXTextField fx:id="username" focusColor="#f2a261e8" labelFloat="true" layoutX="97.0" layoutY="208.0" promptText="Nome de Usuario" unFocusColor="#141414">
+                     <font>
+                        <Font name="Humanst521 Lt BT Light" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="password" focusColor="#f2a261ef" labelFloat="true" layoutX="97.0" layoutY="271.0" promptText="Senha" unFocusColor="#141414">
+                     <font>
+                        <Font name="Humanst521 Lt BT Light" size="18.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <Text fill="#f8f4f457" fontSmoothingType="LCD" layoutX="133.0" layoutY="100.0" smooth="false" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeWidth="0.0" text="Entrar">
+                     <font>
+                        <Font name="Forte" size="48.0" />
+                     </font>
+                  </Text>
+                  <JFXButton fx:id="btnLogin" contentDisplay="GRAPHIC_ONLY" layoutX="285.0" layoutY="350.0" onAction="#login" ripplerFill="#0c69cc" textFill="#fafdff" wrapText="true">
+                     <font>
+                        <Font name="FontAwesome Regular" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/next.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                        <Label fx:id="lblLogin" layoutX="130.0" layoutY="180.0" text="Login" textFill="RED" visible="false">
+         					<font>  
+         					<Font size="16.0" />
+         					</font>
+      					</Label>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="65.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/usuarios.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="64.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/lock.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="-10.0" left="5.0" right="5.0" top="-10.0" />
+               </HBox.margin>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="28.0" left="10.0" right="10.0" top="25.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane style="-fx-background-color: grey; -fx-background-radius: 10;"  stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teccsoluction.hermeticum.controle.ConfiguracaoController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+               <menus>
+<!--                   <Menu mnemonicParsing="false" text="Cadastro"> -->
+<!--                      <items> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Empresa" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Produto" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Usuario" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Cliente" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Categoria" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Fornecedor" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Marca" /> -->
+<!--                         <MenuItem mnemonicParsing="false" text="Funcionario" /> -->
+<!--                      </items> -->
+<!--                   </Menu> -->
+                  <Menu mnemonicParsing="false" text="Configuracao">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Banco de Dados" />
+                        <MenuItem mnemonicParsing="false" text="Impressora" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Estoque">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#exit" text="Adicionar Item" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaoestoque" text="Movimentacao" />
+                        <MenuItem mnemonicParsing="false" onAction="#exit" text="Retirar Item" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Financeiro">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Banco" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaocontaspagar" text="Conta a Pagar" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaocontasreceber" text="Contas a Receber" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaopagamento" text="Pagamento" />
+                        <MenuItem mnemonicParsing="false" text="Formas de Pagamento" />
+                        <MenuItem mnemonicParsing="false" text="Despesa" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Movimentacao">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaoempresa" text="Empresa" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaousuario" text="Usuario" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaocliente" text="Cliente" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaoproduto" text="Produto" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaocategoria" text="Categoria" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaofornecedor" text="Fornecedor" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaofuncionario" text="Funcionario" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaocaixa" text="Caixa" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Operacao">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaopedidovenda" text="Vendas" />
+                        <MenuItem mnemonicParsing="false" onAction="#movimentacaopedidocompra" text="Compras" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Relatorio">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#exit" text="Vendas" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Sobre">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Suporte" />
+                        <MenuItem mnemonicParsing="false" text="Auto" />
+                         <MenuItem fx:id="sair" mnemonicParsing="false" onAction="#exit" text="Sair" />
+                     </items>
+                  </Menu>
+               </menus>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </MenuBar>
+                       <Pane prefHeight="80.0" style="-fx-background-color: #0c69cc; -fx-border-botom-color: blue;" styleClass="borderbotom">
+               <children>
+                  <GridPane cacheHint="SCALE_AND_ROTATE" focusTraversable="true" layoutX="8.0" layoutY="24.0">
+                     <children>
+                        <JFXButton styleClass="btnMenu" fx:id="empresa" buttonType="RAISED" contentDisplay="TOP" ellipsisString="" graphicTextGap="1.0" onAction="#movimentacaoempresa" text="Empresa" textAlignment="JUSTIFY" textFill="#eeeaea" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" >
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <image>
+                                    <Image url="@../images/empresa.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="funcionario" styleClass="btnMenu" buttonType="RAISED" contentDisplay="TOP" onAction="#movimentacaofuncionario" text="Funcionario" textAlignment="CENTER" textFill="#fcf8f8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/xx.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="cliente" styleClass="btnMenu" alignment="CENTER" contentDisplay="TOP" onAction="#movimentacaocliente" text="Cliente" textFill="#eeeeee" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/cliente.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="fornecedor" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaofornecedor" text="Fornecedor" textFill="#fcf6f6" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/fornecedor.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="categoria" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaocategoria" text="Categoria" textFill="#f8f4f4" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/category.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="produto" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaoproduto" text="Produto" textFill="#f5f2f2" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/produto.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="pedidocompra" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaopedidocompra" text="Compras" textFill="#eeecec" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/buy.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="pedidovenda" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaopedidovenda" text="Vendas" textFill="#eeecec" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/venda.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="formapagamento" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaoformapagamento" text="Formas Pagamento" textFill="#eeecec" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/forma.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="configuracao" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaoconfiguracao" text="Configuração" textFill="#eeecec" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/conf.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="usuario" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaousuario" text="Usuario" textFill="#fffdfd" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="caixa" styleClass="btnMenu" contentDisplay="TOP" onAction="#movimentacaocaixa" text="Caixa" textFill="#f8f4f4" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/caixa.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                             <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                               <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      
+                                                   </rowConstraints>
+                                                   
+                                                                        <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     
+                  </GridPane>
+               </children>
+<!--                <effect> -->
+<!--                   <InnerShadow choke="0.23" color="#282323" height="80.3" radius="83.325" width="255.0" /> -->
+<!--                </effect> -->
+            </Pane>
+            <Pane style="-fx-background-color: #CAE1FF;">
+               <children>
+                  <Circle fx:id="circuloemp" fill="DIMGRAY" layoutX="59.0" layoutY="54.0" radius="47.0" stroke="#eeeaea" strokeType="INSIDE" />
+                  <ImageView fx:id="imgviewempresa" fitHeight="81.0" fitWidth="91.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image fx:id="imgsempresa" url="@../images/empresa/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="TOP" layoutX="113.0" layoutY="26.0" text="Empresa Nome" textFill="#979595" textOverrun="CLIP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbhora"  alignment="CENTER" contentDisplay="TOP" layoutX="531.0" layoutY="9.0" text="15:33" textFill="#979595" textOverrun="CLIP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Circle fx:id="circulo" fill="DIMGRAY" layoutX="888.0" layoutY="54.0" radius="47.0" stroke="#eeeaea" strokeType="INSIDE" />
+                  <ImageView fx:id="imgviewusuario" fitHeight="81.0" fitWidth="91.0" layoutX="847.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image fx:id="imgsusuario" url="@../images/usuario/wind.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="txtusuarionome"  alignment="CENTER" contentDisplay="TOP" layoutX="970.0" layoutY="13.0" text="Usuario Nome" textFill="#979595" textOverrun="CLIP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="trocarusuario" layoutX="981.0" layoutY="54.0" onAction="#trocarusuario" style="-fx-background-color: #696969;" styleClass="btnGreen" text="Trocar" textFill="#f5f2f2" />
+                  <JFXButton fx:id="editarusuario" layoutX="1036.0" layoutY="54.0" onAction="#editarusuario" style="-fx-background-color: #696969;" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="Editar" textFill="#f5f2f2" />
+                  <JFXButton fx:id="exit" layoutX="1090.0" layoutY="54.0" onAction="#exit" style="-fx-background-color: red;" styleClass="btnGreen" text="Sair" textFill="#f5f2f2" />
+                  <Label alignment="CENTER" contentDisplay="TOP" layoutX="113.0" layoutY="49.0" text="Cnpj: 9658236/0002" textFill="#979595" textOverrun="CLIP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbdata"  alignment="CENTER" contentDisplay="TOP" layoutX="493.0" layoutY="47.0" text="25/03/2018" textFill="#979595" textOverrun="CLIP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="82.0" fitWidth="97.0" layoutX="388.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/hojeg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Pane>
+         </children>
+                  <effect>
+            <InnerShadow />
+         </effect>
+      </VBox>
+   </top>
+      <bottom>
+  <Pane style="-fx-background-color: #0c69cc;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="497.0" layoutY="13.0" text="Tecsoluction" textFill="#fcfcfc">
+               <font>
+                  <Font name="FontAwesome Regular" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="26.0" layoutX="648.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logosa.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="602.0" layoutY="10.0" text="2018" textFill="#f2eded">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Lighting diffuseConstant="1.21">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Pane>
+   </bottom>
+   <right>
+         <Pane prefWidth="250.0" style="-fx-background-color: #0c69cc; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <ImageView fitHeight="82.0" fitWidth="97.0" layoutX="84.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logosa.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="32.0" layoutY="207.0" text="Bem-Vindo," textFill="#fcf7f7">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomeusuario"  layoutX="49.0" layoutY="275.0" text="Nome Usuario" textFill="#fcf9f9">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Pane>
+   </right>
+   <left>
+      <VBox fillWidth="false" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="btconfbancodados" onAction="#confbancodados" text="BANCO DE DADOS">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/data.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btconfimpressora" onAction="#confimpressora" text="CONF IMPRESSORA">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/print.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
