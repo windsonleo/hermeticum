@@ -101,7 +101,7 @@
       </Pane>
    </top>
    <center>
-      <VBox style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
+      <VBox fillWidth="false" style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
          <children>
             <HBox fillHeight="false" VBox.vgrow="ALWAYS">
                <children>
@@ -168,11 +168,33 @@
                   <TableColumn fx:id="colFormaTipo" prefWidth="75.0" text="Tipo" />
                    <TableColumn fx:id="colIFormaValorPago" prefWidth="75.0" text="Valor" />
                   <TableColumn fx:id="colIFormaPArcela" prefWidth="75.0" text="Parcela" />
+                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Editar" />
+                     <TableColumn fx:id="colDel" maxWidth="3500.0" prefWidth="75.0" text="Editar" />
+                     
               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </TableView>
+            <Pane fx:id="paneforma" prefHeight="167.0" prefWidth="663.0" visible="false">
+               <children>
+                  <Label fx:id="txtsimbol" text="R$" visible="false">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="jtxtfvalorpago" focusColor="#bfa42b" layoutX="51.0" layoutY="1.0" promptText="Valor Pago" visible="false">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="btsalvarforma" layoutX="544.0" layoutY="106.0" onAction="#salvarformavalor" prefHeight="47.0" prefWidth="105.0" styleClass="btnFormSalvar" text="salvar" textFill="#f5f0f0" visible="false" />
+                  <JFXTextField fx:id="nome" layoutX="51.0" layoutY="71.0" promptText="Nome" visible="false" />
+                  <JFXTextField fx:id="tipo" layoutX="197.0" layoutY="71.0" promptText="Tipo" visible="false" />
+                  <JFXTextField fx:id="percdesconto" layoutX="51.0" layoutY="106.0" promptText="Percentual dsconto" visible="false" />
+                  <JFXTextField fx:id="parcelas" layoutX="197.0" layoutY="106.0" promptText="Parcelas" visible="false" />
+               </children>
+            </Pane>
          </children>
          <BorderPane.margin>
             <Insets />

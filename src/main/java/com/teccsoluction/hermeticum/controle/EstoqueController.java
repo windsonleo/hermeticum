@@ -1,7 +1,11 @@
 package com.teccsoluction.hermeticum.controle;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +15,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import com.teccsoluction.hermeticum.entidade.Estoque;
+import com.teccsoluction.hermeticum.entidade.Item;
 import com.teccsoluction.hermeticum.framework.AbstractController;
 import com.teccsoluction.hermeticum.servico.EstoqueServicoImpl;
 import com.teccsoluction.hermeticum.view.FxmlView;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
@@ -83,7 +93,7 @@ public class EstoqueController extends AbstractController<Estoque>{
 //	private TableColumn<Estoque, String> colSaldoInicial;
 	
 	@FXML
-	private TableColumn<Estoque, String> colStatus;
+	private TableColumn<Estoque, String> colItens;
 
 	
 	@FXML
@@ -96,8 +106,48 @@ public class EstoqueController extends AbstractController<Estoque>{
 	@FXML
     private TableColumn<Estoque, Boolean> colDel;
 	
+	
+	
+	private  ObservableList<Item> itemList;
+
+    
+	@FXML
+	private   TableView<Item> itemestoquetabela ;
+	
+	@FXML
+	private TableColumn<Item, String> colItemCode;
+	
+	@FXML
+	private TableColumn<Item, String> colItemDescricao;
+	
+	@FXML
+	private TableColumn<Item, String> colItemQtd;
+	
+	@FXML
+	private TableColumn<Item, String> colItemValorUnitario;
+	
+	@FXML
+	private TableColumn<Item, String> colItemValorTotal;
+	
+	
+	
+	
 	@FXML
 	private Pane boxEntity;
+	
+	
+	
+	@FXML
+    private Label txttotalprodutovalor;
+	
+	@FXML
+    private Label txttotalitemvalor;
+	
+	
+	private Estoque estoque;
+	
+	
+	
 	
 	
 	@Autowired
@@ -327,7 +377,7 @@ public class EstoqueController extends AbstractController<Estoque>{
 		
 		colEstoqueId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		colEstoqueNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+		colItens.setCellValueFactory(new PropertyValueFactory<>("items"));
 //		colSaldoInicial.setCellValueFactory(new PropertyValueFactory<>("saldoinicial"));
 //		colIE.setCellValueFactory(new PropertyValueFactory<>("inscricaoestadual"));
 //		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -354,8 +404,28 @@ public class EstoqueController extends AbstractController<Estoque>{
     public void initialize(URL arg0, ResourceBundle arg1) {
     	// TODO Auto-generated method stub
     	
+		List<Estoque> estoques = EstoqueService.findAll();
+		
+		estoque = estoques.get(0);
+    	
     	setColumnProperties();
 //    	status.getItems().setAll(StatusEstoque.values());
+    	
+    	txttotalprodutovalor.setText(Integer.toString(estoque.getItems().size()));
+    	txttotalitemvalor.setText(TotalItem(estoque.getItems()).toString());
+    	
+        itemList = FXCollections.observableArrayList(estoque.getItems());
+        itemestoquetabela.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    	
+    	itemList.addAll(estoque.getItems());
+    	itemestoquetabela.setItems(itemList);
+    	
+    	 setColumnProperties();
+//		 loadItemDetails();
+		 
+    	 setColumnPropertiesItem();
+		 loadItemDetails();
+		 
     	
     	super.initialize(arg0, arg1);
     }
@@ -422,6 +492,54 @@ public class EstoqueController extends AbstractController<Estoque>{
 		
 		
 		
-	}	
+	}
+	
+	
+	private BigDecimal TotalItem(List<Item> itens){
+		
+//	    Collection<String> itenstotal = estoque.getItems().values();
+			
+			BigDecimal total = new BigDecimal("0.00");
+
+	    for (Item item : itens) {
+
+	    	BigDecimal totalaux = item.getQtd();
+
+	    	total = total.add(totalaux);
+
+	    }
+	    
+	    return total;
+	}
+	
+	
+	public void loadItemDetails(){
+	itemList.clear();
+	itemList.addAll(estoque.getItems());
+	itemestoquetabela.setItems(itemList);
+//	setColumnProperties();
+}
+	
+	
+	private void setColumnPropertiesItem() {
+		// TODO Auto-generated method stub
+		
+//		colItemId.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+		colItemCode.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+		colItemDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		colItemQtd.setCellValueFactory(new PropertyValueFactory<>("qtd"));
+		colItemValorTotal.setCellValueFactory(new PropertyValueFactory<>("totalItem"));
+//		colIE.setCellValueFactory(new PropertyValueFactory<>("inscricaoestadual"));
+//		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+//		colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+		colItemValorUnitario.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
+//		
+//		colEdit.setCellFactory(cellFactory);
+//		colDel.setCellFactory(cellFactorydel);
+		
+//		super.setColumnProperties();
+	}
+	
 	 
 }

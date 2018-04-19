@@ -46,27 +46,16 @@ public class PedidoVenda extends Pedido implements Serializable {
 //    @Enumerated(EnumType.STRING)
 //    private OrigemPedido origempedido;
 
-    private boolean ispago = false;
+//    private boolean ispago = false;
 
     //aberto,pendente,fechado,cancelado
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
 
-//    @ElementCollection(fetch=FetchType.EAGER)
-//    @CollectionTable(name = "itens_pedidovenda", joinColumns = @JoinColumn(name = "id"))
-////    @JsonManagedReference
-////    @Lob
-//    @Column(name = "qtd")
-//    @MapKeyColumn(name = "idit")
-//    private Map<Item, String> items = new HashMap<Item, String>();
     
     @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name = "itens_pedidovenda", joinColumns = @JoinColumn(name = "id"))
-//    @JsonManagedReference
-//    @Lob
-//    @Column(name = "qtd")
-//    @MapKeyColumn(name = "idit")
     private List<Item> items = new ArrayList<Item>();
 
 
@@ -79,14 +68,6 @@ public class PedidoVenda extends Pedido implements Serializable {
     }
 
 
-//    public PedidoVenda(Cliente cliente, Mesa mesa, Garcon garcon, OrigemPedido origempedido) {
-//        super();
-//        this.cliente = cliente;
-//        this.mesa = mesa;
-//        this.garcon = garcon;
-//        this.origempedido = origempedido;
-//        this.items = new HashMap<Item, String>();
-//    }
 
     @Override
     public String toString() {
@@ -114,14 +95,17 @@ public class PedidoVenda extends Pedido implements Serializable {
     
     
     
-    
-
-    
-    
     public BigDecimal getTotalVenda(){
     	
     	
     	return  CalcularTotal(getItems());
+    }
+    
+    
+    public BigDecimal getTotalVendaPaga(){
+    	
+    	
+    	return  CalculaTotalPago(getFormas());
     }
 
 }

@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 
 import com.jfoenix.controls.JFXButton;
 import com.teccsoluction.hermeticum.conf.StageManager;
+import com.teccsoluction.hermeticum.entidade.Estoque;
 import com.teccsoluction.hermeticum.entidade.Usuario;
 import com.teccsoluction.hermeticum.view.FxmlView;
 
@@ -24,12 +25,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
@@ -38,6 +41,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.Callback;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -70,6 +74,10 @@ public abstract class AbstractController<Entity> implements Initializable {
 	
 	@FXML
     private TableColumn<Entity, Boolean> colDel;
+	
+	
+	@FXML
+    private TableColumn<Entity, Boolean> colInfo;
 	
 	
 	@FXML
@@ -191,15 +199,15 @@ public abstract class AbstractController<Entity> implements Initializable {
    
 
 	@FXML
-	private void exit(ActionEvent event) {
+	private void logout(ActionEvent event) {
 		Platform.exit();
     }
 	
 	
-    @FXML
-    private void logout(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.LOGIN);    	
-    }
+//    @FXML
+//    private void logout(ActionEvent event) throws IOException {
+//    	stageManager.switchScene(FxmlView.LOGIN);    	
+//    }
     
     
     @FXML
@@ -320,6 +328,8 @@ public void saveAlert(Entity user){
     
 		
 		public void setColumnProperties(){
+			
+			colInfo.setCellFactory(cellFactoryInfo);
 			
 		}
 		
@@ -580,4 +590,88 @@ public void saveAlert(Entity user){
 					// retorna a String do StringBuilder
 					return sb.toString();
 				}
+			 
+			 
+			 
+			 
+			 Callback<TableColumn<Entity, Boolean>, TableCell<Entity, Boolean>> cellFactoryInfo = 
+						new Callback<TableColumn<Entity, Boolean>, TableCell<Entity, Boolean>>()
+				{
+					@Override
+					public TableCell<Entity, Boolean> call( final TableColumn<Entity, Boolean> param)
+					{
+						final TableCell<Entity, Boolean> cell = new TableCell<Entity, Boolean>()
+						{
+							
+							Image imgInfo = new Image(getClass().getResourceAsStream("/images/info.png"));
+//							
+			//
+//							Image imgDel = new Image(getClass().getResourceAsStream("/images/del.png"));
+
+							
+							final JFXButton btnInfo = new JFXButton();
+							
+							
+							
+							@Override
+							public void updateItem(Boolean check, boolean empty)
+							{
+								super.updateItem(check, empty);
+								if(empty)
+								{
+									setGraphic(null);
+									setText(null);
+								}
+								else{
+									
+									btnInfo.setOnAction(e ->{
+										Entity empresa = getTableView().getItems().get(getIndex());
+										updateEntity(empresa);
+									});
+									
+									btnInfo.setStyle("-fx-background-color: transparent;");
+									ImageView iv = new ImageView();
+							        iv.setImage(imgInfo);
+							        iv.setPreserveRatio(true);
+							        iv.setSmooth(true);
+							        iv.setCache(true);
+							        btnInfo.setGraphic(iv);
+									
+									setGraphic(btnInfo);
+									setAlignment(Pos.CENTER);
+									setText(null);
+								
+									
+								
+								}
+								
+								
+								
+							}
+
+							private void updateEntity(Entity user) {
+//								id.setText(user.getId().toString());
+//								nome.setText(user.getNome());
+//								status.setText(user.getStatus().name());
+//								saldoinicial.setText(user.getSaldoinicial());
+						
+//								atualizar.setDisable(false);
+////								
+//								salvar.setDisable(true);
+//								ligarLuz();
+//								dob.setValue(user.getDob());
+//								if(user.getGender().equals("Male")) rbMale.setSelected(true);
+//								else rbFemale.setSelected(true);
+//								cbRole.getSelectionModel().select(user.getRole());
+								
+								System.out.println("Update Entity Informação" + user);
+							}
+							
+
+						};
+						return cell;
+					}
+				};
+			 
+			 
 }

@@ -284,163 +284,178 @@
                   </Pane>
                   <HBox>
                      <children>
-                        <ToolBar orientation="VERTICAL" style="-fx-background-color: #999999; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
-                           <items>
-                              <JFXButton fx:id="btabrecupom" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#abrecupom" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Abre Cupom" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/abrircupom.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btaddcliente" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#addcliente" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Add Cliente" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\addcli.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="bttrocaroperador" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#trocaroperador" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Trocar Operador" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btfinalizavenda" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#finalizavenda" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Finaliza Venda" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btcancelaitem" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#cancelaitem" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Cancela Item" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btcancelacupom" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#cancelacupom" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Cancela Cupom" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btreimprimir" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#reimprimir" prefHeight="50.0" prefWidth="150.0" ripplerFill="#1971c9" styleClass="btnMenu" text="Reimpressao" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btalteraquantidade" alignment="TOP_LEFT" onAction="#alteraquantidade" prefHeight="50.0" prefWidth="150.0" styleClass="btnMenu" text="Altera Quantidade" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btpesquisaproduto" alignment="TOP_LEFT" onAction="#pesquisaproduto" prefHeight="50.0" prefWidth="150.0" styleClass="btnMenu" text="Pesquisa Produto" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btencerracaixa" alignment="TOP_LEFT" onAction="#encerracaixa" prefHeight="50.0" prefWidth="150.0" styleClass="btnMenu" text="Encerar Caixa" textFill="#eeeeee" wrapText="true">
-                                 <graphic>
-                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@..\images\trocaroperador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </JFXButton>
-                           </items>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" top="10.0" />
-                           </HBox.margin>
-                           <effect>
-                              <Lighting diffuseConstant="1.21">
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
-                        </ToolBar>
-                        <Pane focusTraversable="true" style="-fx-background-color: #CCCCCC;" HBox.hgrow="SOMETIMES">
+                        <VBox>
                            <children>
-                              <JFXTextField fx:id="totalvenda" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="322.0" layoutY="308.0" prefHeight="51.0" prefWidth="206.0" promptText="Total Venda" unFocusColor="#e8e5e5">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </JFXTextField>
-                              <JFXTextField fx:id="totalitems" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="12.0" layoutY="302.0" prefHeight="51.0" prefWidth="213.0" promptText="Qtd Items" unFocusColor="#e8e5e5">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </JFXTextField>
-                              <JFXTextField fx:id="descricao" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="16.0" layoutY="105.0" prefHeight="41.0" prefWidth="523.0" promptText="Descricao" unFocusColor="#ebe7e7">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </JFXTextField>
-                              <JFXTextField fx:id="valortotal" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="333.0" layoutY="192.0" prefHeight="51.0" prefWidth="199.0" promptText="Valor Total" unFocusColor="#f8f7f7">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </JFXTextField>
-                              <TextField fx:id="codigobarra" layoutX="17.0" layoutY="21.0" prefHeight="51.0" prefWidth="337.0" promptText="Codigo de Barras">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </TextField>
-                              <TextField fx:id="qtd" layoutX="397.0" layoutY="21.0" prefHeight="51.0" prefWidth="140.0" promptText="Qtd">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </TextField>
-                              <JFXTextField fx:id="valorunitario" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="16.0" layoutY="192.0" prefHeight="51.0" prefWidth="211.0" promptText="Valor Unitario" unFocusColor="#ebe7e7">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 
-                                                   </JFXTextField>
-                              <JFXButton fx:id="additem" layoutX="424.0" layoutY="380.0" prefHeight="42.0" prefWidth="87.0" styleClass="btnFormSalvar" text="Add Item" textFill="#fffdfd" />
+                              <ToolBar style="-fx-background-color: #999999; -fx-background-radius: 10;">
+                                 <items>
+                                    <JFXButton fx:id="btabrecupom" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#abrecupom" ripplerFill="#1971c9" styleClass="btnMenu" text="Abre Cupom" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/opencupom.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btaddcliente" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#addcliente" ripplerFill="#1971c9" styleClass="btnMenu" text="Add Cliente" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/addcliente.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="bttrocaroperador" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#trocaroperador" ripplerFill="#1971c9" styleClass="btnMenu" text="Trocar Operador" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trocaroperador.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btcancelaitem1" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#cancelaitem" ripplerFill="#1971c9" styleClass="btnMenu" text="Cancela Item" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/cancelitem.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btfinalizavenda" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#finalizavenda" ripplerFill="#1971c9" styleClass="btnMenu" text="Finaliza Venda" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/finalize.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                 </items>
+                                 <effect>
+                                    <Lighting diffuseConstant="1.21">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </ToolBar>
+                              <Pane focusTraversable="true" style="-fx-background-color: #CCCCCC;" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <JFXTextField fx:id="totalvenda" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="322.0" layoutY="308.0" prefHeight="51.0" prefWidth="206.0" promptText="Total Venda" unFocusColor="#e8e5e5">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="totalitems" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="12.0" layoutY="302.0" prefHeight="51.0" prefWidth="213.0" promptText="Qtd Items" unFocusColor="#e8e5e5">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="descricao" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="16.0" layoutY="105.0" prefHeight="41.0" prefWidth="523.0" promptText="Descricao" unFocusColor="#ebe7e7">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="valortotal" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="333.0" layoutY="192.0" prefHeight="51.0" prefWidth="199.0" promptText="Valor Total" unFocusColor="#f8f7f7">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <TextField fx:id="codigobarra" layoutX="17.0" layoutY="21.0" prefHeight="51.0" prefWidth="337.0" promptText="Codigo de Barras">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="qtd" layoutX="397.0" layoutY="21.0" prefHeight="51.0" prefWidth="140.0" promptText="Qtd">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <JFXTextField fx:id="valorunitario" editable="false" focusColor="#f6f7fc" labelFloat="true" layoutX="16.0" layoutY="192.0" prefHeight="51.0" prefWidth="211.0" promptText="Valor Unitario" unFocusColor="#ebe7e7">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       
+                                                         </JFXTextField>
+                                    <JFXButton fx:id="additem" layoutX="566.0" layoutY="23.0" prefHeight="49.0" prefWidth="70.0" styleClass="btnFormSalvar" text="Add Item" textFill="#fffdfd" />
+                                 </children>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <ToolBar style="-fx-background-color: #999999; -fx-background-radius: 10;">
+                                 <effect>
+                                    <Lighting diffuseConstant="1.21">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                                 <items>
+                                    <JFXButton fx:id="btcancelacupom1" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#cancelacupom" ripplerFill="#1971c9" styleClass="btnMenu" text="Cancela Cupom" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/cancelcupom.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btreimprimir1" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" onAction="#reimprimir" ripplerFill="#1971c9" styleClass="btnMenu" text="Reimpressao" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/reimprimir.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btalteraquantidade1" alignment="TOP_LEFT" onAction="#alteraquantidade" styleClass="btnMenu" text="Altera Quantidade" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/alterqtd.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btpesquisaproduto1" alignment="TOP_LEFT" onAction="#pesquisaproduto" styleClass="btnMenu" text="Pesquisa Produto" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@..\images\trocaroperador.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btencerracaixa1" alignment="TOP_LEFT" onAction="#encerracaixa" styleClass="btnMenu" text="Encerar Caixa" textFill="#eeeeee" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/finalizacaixa.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </JFXButton>
+                                 </items>
+                              </ToolBar>
                            </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" right="5.0" top="10.0" />
-                           </HBox.margin>
-                           <effect>
-                              <InnerShadow />
-                           </effect>
-                        </Pane>
+                        </VBox>
                         <Pane focusTraversable="true" style="-fx-background-color: #CCCCCC; -fx-background-radius: 10;">
                            <children>
-                              <Pane focusTraversable="true" layoutX="9.0" layoutY="24.0" prefHeight="400.0" prefWidth="387.0" style="-fx-background-color: #FFFACD;">
+                              <Pane focusTraversable="true" layoutX="9.0" layoutY="24.0" style="-fx-background-color: #FFFACD;">
                                  <children>
                                     <Label layoutX="146.0" layoutY="52.0" text="CUPOM FISCAL">
                                        <font>
@@ -477,7 +492,7 @@
                                           <Font name="Lucida Sans Unicode" size="9.0" />
                                        </font>
                                     </Label>
-                                    <TableView fx:id="cupomtabela" cacheHint="QUALITY" layoutX="9.0" layoutY="81.0" prefHeight="291.0" prefWidth="373.0" style="-fx-background-color: white; -fx-control-inner-background: white;" tableMenuButtonVisible="true">
+                                    <TableView fx:id="cupomtabela" cacheHint="QUALITY" layoutX="9.0" layoutY="81.0" style="-fx-background-color: white; -fx-control-inner-background: white;" tableMenuButtonVisible="true">
                                       <columns>
                   <!--                     <TableColumn fx:id="colItemId" prefWidth="75.0" text="id" /> -->
                                         <TableColumn fx:id="colItemCode" prefWidth="75.0" text="codigo" />
@@ -510,7 +525,7 @@
                               
                            </children>
                            <HBox.margin>
-                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                              <Insets left="10.0" right="5.0" />
                            </HBox.margin>
                         </Pane>
                      </children>

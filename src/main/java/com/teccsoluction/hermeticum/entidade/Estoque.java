@@ -4,7 +4,10 @@ package com.teccsoluction.hermeticum.entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -39,9 +42,9 @@ public class Estoque extends BaseEntity  implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "itens_estoque", joinColumns = @JoinColumn(name = "id"))
 //    @Lob
-    @Column(name = "qtd")
-    @MapKeyColumn(name = "idit")
-    private Map<Item, String> items;
+//    @Column(name = "qtd")
+//    @MapKeyColumn(name = "idit")
+    private List<Item> items;
 
 
     public Estoque() {
@@ -58,144 +61,94 @@ public class Estoque extends BaseEntity  implements Serializable {
 
     
     
-    public void AddProdutoEstoque(Item produto, BigDecimal qtd) {
+    public void AddProdutoEstoque(Item produto) {
 
-        String vantigo="0.00";
-        BigDecimal vnovo = qtd;
+    	BigDecimal vantigo= new BigDecimal("0.00");
+        BigDecimal vnovo = produto.getQtd();
         BigDecimal novo = new BigDecimal("0.00");
         BigDecimal antigo = new BigDecimal("0.00");
         
-//        Map<Item,String> pcitens = getItems();
-//        
-//        for (Item key : pcitens.keySet()) {
-//        	
-//       	 vantigo = pcitens.get(key);
-//
-//            antigo = new BigDecimal(vantigo);
-//
-//            novo = novo.add(antigo).subtract(vnovo);
-//
-//       	
-//      	            if (key.getId().equals(produto.getId())) {
-//      	            	
-//      	            	pcitens.replace(produto,vantigo,novo.toString());
-//      	            	
-//      	            }else{
-//      	            	
-//      	         	novo = novo.add(antigo).subtract(vnovo);
-//      	         	pcitens.put(produto, novo.toString());
-//      	        	
-//      	        	       	            	
-//      	            }
-//      	            
-//       }
-//        
-//        setItems(pcitens);
-//        items.putAll(pcitens);
+        if (getItems().equals(produto)) {
+        	
+			System.out.println("entrou no if fora do for estoque add produto" + produto.getCodigo());
 
+        	
+//        	for(Item it : items){
+//        		
+//        		if(produto.getCodigo().equals(it.getCodigo())){
+        			
+//        			vantigo = it.getQtd();
+			
+					int indexlist = getItems().indexOf(produto);
+			
+					vantigo = getItems().get(indexlist).getQtd();
+                    novo = novo.add(vantigo).add(vnovo);
+                    produto.setQtd(novo);
+                    
+//                	System.out.println("entrou no if dentro do for estoque add produto" + it.getCodigo());
+//        			System.out.println("entrou no if dentro do for estoque add produto qtd it" + it.getQtd());
+        			System.out.println("entrou no if dentro do for estoque add produto qtd prod" + produto.getQtd());
 
-        if (getItems().containsKey(produto)) {
+                   
+//        			
+//        		}
+//        		
+//        	}
+        	
+        	 items.add(produto);
             
-            vantigo = getItems().get(produto);
 
-            antigo = new BigDecimal(vantigo);
-
-            novo = novo.add(antigo).add(vnovo);
-
-            items.replace(produto,antigo.toString(),novo.toString());
-//            items.remove(produto);
         	
         }else {
-        	
+			System.out.println("não entrou no if dentro estoqueAdd qtd prod" + produto.getQtd());
+
         	
         	  novo = novo.add(antigo).add(vnovo);	
-        	  items.put(produto, novo.toString());
+        	  produto.setQtd(novo);
+        	  items.add(produto);
         	
         }
+    	
+//    	getItems().add(produto);
 
     }
 
-    public void RetirarProdutoEstoque(Item produto, BigDecimal qtd) {
+    public void RetirarProdutoEstoque(Item produto) {
 
-        String vantigo="0.00";
-        BigDecimal vnovo = qtd;
+    	BigDecimal vantigo= new BigDecimal("0.00");
+        BigDecimal vnovo = produto.getQtd();
         BigDecimal novo = new BigDecimal("0.00");
         BigDecimal antigo = new BigDecimal("0.00");
         
-        if (getItems().containsKey(produto)) {
-//        
-            vantigo = getItems().get(produto);
-//
-            antigo = new BigDecimal(vantigo);
-//
-            novo = novo.add(antigo).subtract(vnovo);
-//
-            items.replace(produto,vantigo,novo.toString());
-////            items.remove(produto);
-//        	
-//        	
+        if (getItems().contains(produto)) {
+        	
+			System.out.println("entrou no if fora do for estoque retirar produto" + produto.getCodigo());
+
+
+			
+					int indexlist = getItems().indexOf(produto);
+        			
+					vantigo = getItems().get(indexlist).getQtd();
+                   
+        			novo = novo.add(vantigo).subtract(vnovo);
+                    
+                    produto.setQtd(novo);
+                   
+        			System.out.println("entrou no if dentro do for estoque retirar produto qtd prod" + produto.getQtd());
+
+        	
+        	 items.add(produto);
+
+       	
        }else {
-//        	
-////        	
        	  novo = novo.add(antigo).subtract(vnovo);
-       	  items.put(produto, novo.toString());
-//        	
-//        	AddProdutoEstoque(produto, qtd);
+       	  produto.setQtd(novo);
+       	  items.add(produto);
         	
         }
+    	
+//    	items.add(produto);
 
-//        for (Item key : getItems().keySet()) {
-//
-////            if (key.getId() == (produto.getId())) {
-//        	
-//        	
-//        	
-//        	if (getItems().containsKey(produto)) {
-//
-//                vantigo = getItems().get(key);
-//
-//                antigo = new BigDecimal(vantigo);
-//
-//                novo = antigo.add(vnovo).subtract(vnovo);
-//
-//                items.put(key, novo.toString());
-//            }
-//
-//        }
-//
-//        if (!getItems().containsKey(produto)) {
-//
-////            vnovo = qtd;
-////            BigDecimal qtdnegativa = vnovo;
-//            items.put(produto, vnovo.toString());
-//        }
-        
-//        Map<Item,String> pcitens = getItems();
-//        for (Item key : pcitens.keySet()) {
-//        	
-//        	 vantigo = pcitens.get(key);
-//
-//             antigo = new BigDecimal(vantigo);
-//
-//             novo = novo.add(antigo).subtract(vnovo);
-//
-//        	
-//       	            if (key.getId() == (produto.getId())) {
-//       	            	
-//       	            	pcitens.replace(produto,vantigo,novo.toString());
-//       	            	
-//       	            }else{
-//       	            	
-//       	         	novo = novo.add(antigo).subtract(vnovo);
-//       	         	pcitens.put(produto, novo.toString());
-//       	        	
-//       	        	       	            	
-//       	            }
-//       	            
-//        }
-//       
-//        setItems(pcitens);
-//        items.putAll(pcitens);
         
     }
 
@@ -205,15 +158,13 @@ public class Estoque extends BaseEntity  implements Serializable {
         BigDecimal totalpedido = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
 
 
-        for (Item key : getItems().keySet()) {
+        for (Item key : getItems()) {
 
-            String qtd = getItems().get(key);
+        	BigDecimal qtd = key.getQtd();
 
-//            String qtdstring = BigDecimal.valueOf(qtd);
+//            BigDecimal quantidadef = new BigDecimal(qtd);
 
-            BigDecimal quantidadef = new BigDecimal(qtd);
-
-            totalpedido = totalpedido.add(key.getPrecoCusto().multiply(quantidadef));
+            totalpedido = totalpedido.add(key.getPrecoCusto().multiply(qtd));
         }
 
         return totalpedido;
@@ -223,19 +174,72 @@ public class Estoque extends BaseEntity  implements Serializable {
 
         BigDecimal totalpedido = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
 
-        for (Item key : getItems().keySet()) {
+        for (Item key : getItems()) {
 
-            String qtd = getItems().get(key);
+        	BigDecimal qtd = key.getQtd();
 
-            BigDecimal quantidadef = new BigDecimal(qtd);
+//            BigDecimal quantidadef = new BigDecimal(qtd);
 
-            totalpedido = totalpedido.add(key.getPrecoUnitario().multiply(quantidadef));
+            totalpedido = totalpedido.add(key.getPrecoUnitario().multiply(qtd));
 
         }
         return totalpedido;
 
     }
-
+    
+    
+    public void OperacaoEstoqueVenda(PedidoVenda pedido){
+    	
+    	for (int i = 0; i < pedido.getItems().size(); i++) {
+    		
+    		Item item = pedido.getItems().get(i);
+    		
+    		RetirarProdutoEstoque(item);
+    		
+    		System.out.println("Nome do item Retirado do estoque:" + item.getDescricao());
+    		System.out.println("Quantidade do item Retirado do estoque:" + item.getQtd());
+			
+		}
+    	
+    	
+    }
+    
+    
+    public void OperacaoEstoqueCompra(PedidoCompra pedido){
+    	
+    	for (int i = 0; i < pedido.getItems().size(); i++) {
+    		
+    		Item item = pedido.getItems().get(i);
+    		
+    		AddProdutoEstoque(item);
+    		
+    		System.out.println("Nome do item Adicionado do estoque:" + item.getDescricao());
+    		System.out.println("Quantidade do item Adicionado do estoque:" + item.getQtd());
+			
+		}
+    	
+    	
+    }
+    
+//	private BigDecimal TotalItem(List<Item> itens){
+//		
+////	    Collection<String> itenstotal = estoque.getItems().values();
+//			
+//			BigDecimal total = new BigDecimal("0.00");
+//
+//	    for (Item item : items) {
+//
+//	    	BigDecimal totalaux = item.getQtd();
+//
+//	    	total = total.add(totalaux);
+//
+//	    }
+//	    
+//	    return total;
+//	}
+	
+	
+	
 
 }
 

@@ -17,6 +17,7 @@ import com.teccsoluction.hermeticum.entidade.Usuario;
 import com.teccsoluction.hermeticum.servico.UsuarioServicoImpl;
 import com.teccsoluction.hermeticum.view.FxmlView;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,7 +38,7 @@ import lombok.Setter;
 public class LoginController implements Initializable{
 
 	@FXML
-    private JFXButton btnLogin,btnEntrar,btnLembrar;
+    private JFXButton btnLogin,btnEntrar,btnLembrar,btexit;
 
     @FXML
     private JFXPasswordField password;
@@ -154,55 +155,10 @@ public class LoginController implements Initializable{
 	
 	}
 	
-//	private void PegarUsuario() {
-//	
-//	
-////	try{
-////		
-////		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-////
-////        Parent root =loader.load();
-////        
-////      maincontrol = (MainController)loader.getController();
-////      maincontrol.SetarUsuarioLogin(usuario);
-//      
-//      stageManager.switchScene(FxmlView.MAIN);
-//      
-//      
-////      maincontrol
-//      
-//      
-////      
-////      Label nomeusu =  new Label();
-////      nomeusu.setText(usuario.getFirstName());
-////		
-////		maincontrol.setUsuarioUp(usuario);
-////		maincontrol.setNomeusuario(nomeusu);
-////
-////	
-//         javafx.stage.Window win = new Popup() ;
-//	
-//		Stage s1 = new Stage();
-//		s1.initOwner(win);
-//		s1.initModality(Modality.WINDOW_MODAL);
-//		
-//		 Scene scene = new Scene(root);
-//		 
-//		 s1.setScene(scene);
-//		 s1.show();
-//      
-////      Stage stage=new Stage();
-////      stage.setScene(new Scene(root));
-////      stage.show();
-//    		 
-//		}catch (Exception e) {
-//
-//		System.out.println("erro Login CONTROL:"+ e);
-//		
-//		}
-//		
-//	
-//}
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+    	Platform.exit();   	
+    }
 	
 	
 	

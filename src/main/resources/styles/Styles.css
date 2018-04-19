@@ -15,7 +15,8 @@
 
 
 .btnMenu:hover{
-	-fx-background-color:  white;
+	-fx-background-color:  black;
+	 -fx-text-fill: white;
 }
 
 .btnMenu:focused{

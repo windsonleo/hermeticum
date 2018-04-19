@@ -125,6 +125,18 @@ public enum FxmlView {
         }
     },
     
+    MOVIMENTACAOCOMPRASITEM {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.compras");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocomprasitem.fxml";
+        }
+    },
+    
     MOVIMENTACAOVENDAS {
         @Override
 		public String getTitle() {

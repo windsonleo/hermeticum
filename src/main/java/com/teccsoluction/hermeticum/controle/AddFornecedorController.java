@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.teccsoluction.hermeticum.entidade.Cliente;
+import com.teccsoluction.hermeticum.entidade.Fornecedor;
 import com.teccsoluction.hermeticum.entidade.PedidoVenda;
 import com.teccsoluction.hermeticum.entidade.Produto;
 import com.teccsoluction.hermeticum.servico.ClienteServicoImpl;
@@ -25,12 +26,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Controller
-public class AddClienteController  implements Initializable {
+public class AddFornecedorController  implements Initializable {
 
 
     
 	@FXML
-	private TextField txtcliente;
+	private TextField txtfornecedor;
 	
 	@FXML
     private JFXButton btcancela;	
@@ -39,19 +40,19 @@ public class AddClienteController  implements Initializable {
     private JFXButton btconfirma;
 	
 	@FXML
-	private TextField txtclienteescolhido;
+	private TextField txtfornecedorescolhido;
 	
 //	@Autowired
 //	private ClienteServicoImpl ClienteService;
 	
 	
-	public Cliente cliente;
+	public Fornecedor fornecedor;
 	
 	
 	
     
     
-    public AddClienteController() {
+    public AddFornecedorController() {
      
         
 
@@ -68,10 +69,10 @@ public class AddClienteController  implements Initializable {
 
 
 	
-	public void SetTxtFields(List<Cliente> clientes){
+	public void SetTxtFields(List<Fornecedor> fornecedores){
 		
 
-			TextFields.bindAutoCompletion(txtcliente,clientes);
+			TextFields.bindAutoCompletion(txtfornecedor,fornecedores);
 					
 		
 //					txtclienteescolhido.setText(txtcliente.getText());
@@ -87,7 +88,7 @@ public class AddClienteController  implements Initializable {
 	
 	
 	
-	public void SetTxtFieldClienteEscolhido(Cliente cliente){
+	public void SetTxtFieldClienteEscolhido(Fornecedor fornecedor){
 		
 		btconfirma.setDisable(false);
 		btcancela.setDisable(false);
@@ -96,12 +97,12 @@ public class AddClienteController  implements Initializable {
 	}	
 	
 	
-	public Cliente getClienteEscolhido(){
+	public Fornecedor getFornecedorEscolhido(){
 			
-			cliente = new Cliente();
-			cliente.setNome(txtcliente.getText());
+		fornecedor = new Fornecedor();
+		fornecedor.setNomefantasia(txtfornecedor.getText());
 
-		return cliente;
+		return fornecedor;
 	}	
 	
 	
@@ -115,7 +116,7 @@ public class AddClienteController  implements Initializable {
 	public void initialize(){
 				
 		
-		txtclienteescolhido.setText(txtcliente.getText());
+		txtfornecedorescolhido.setText(txtfornecedor.getText());
 		btconfirma.setDisable(false);
 		btcancela.setDisable(false);
 		

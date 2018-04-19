@@ -1,6 +1,7 @@
 package com.teccsoluction.hermeticum.controle;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -11,8 +12,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import com.teccsoluction.hermeticum.entidade.Fornecedor;
 import com.teccsoluction.hermeticum.entidade.PedidoCompra;
 import com.teccsoluction.hermeticum.framework.AbstractController;
+import com.teccsoluction.hermeticum.servico.FornecedorServicoImpl;
 import com.teccsoluction.hermeticum.servico.PedidoCompraServicoImpl;
 import com.teccsoluction.hermeticum.util.StatusPedido;
 import com.teccsoluction.hermeticum.view.FxmlView;
@@ -48,6 +51,10 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
 	@FXML
 	private JFXComboBox<StatusPedido> status;
 	
+	
+	@FXML
+	private JFXComboBox<Fornecedor> cbfornecedores;
+	
 	@FXML
 	private JFXToggleButton ativo;
 	
@@ -74,6 +81,9 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
 
 	@Autowired
 	private PedidoCompraServicoImpl PedidoCompraService;
+	
+	@Autowired
+	private FornecedorServicoImpl forncedorService;
 	
 	@FXML
 	private TableColumn<PedidoCompra, Long> colPedidoCompraId;
@@ -105,6 +115,11 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
 	@FXML
 	private JFXButton btrecebimento;
 	
+	@FXML
+	private JFXButton btcomprasitem;
+	
+	
+	
 	
 	
 	@Autowired
@@ -125,6 +140,13 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
 //		PedidoCompra.setNome(nome.getText());
 		PedidoCompra.setStatus(StatusPedido.valueOf(status.getSelectionModel().getSelectedItem().name()));
 //		PedidoCompra.setSaldoinicial("0.00");
+		
+		PedidoCompra.setData(new Date());
+		PedidoCompra.setIspago(false);
+		PedidoCompra.setData_criacao(new Date());
+		PedidoCompra.setFornecedor(cbfornecedores.getSelectionModel().getSelectedItem());
+		PedidoCompra.setTotal(PedidoCompra.CalcularTotal(PedidoCompra.getItems()));
+		PedidoCompra.setTotalpago(PedidoCompra.CalculaTotalPago(PedidoCompra.getFormas()));
 		
 		getservice().save(PedidoCompra);
 		saveAlert(PedidoCompra);
@@ -161,6 +183,14 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
 //			PedidoCompra.setNome(nome.getText());
 			PedidoCompra.setStatus(StatusPedido.valueOf(status.getSelectionModel().getSelectedItem().name()));
 //			PedidoCompra.setSaldoinicial(saldoinicial.getText());
+			PedidoCompra.setData(new Date());
+			PedidoCompra.setIspago(false);
+			PedidoCompra.setData_criacao(new Date());
+//			PedidoCompra.setFornecedor(fornecedores.getSelectionModel().getSelectedItem());
+			PedidoCompra.setFornecedor(cbfornecedores.getSelectionModel().getSelectedItem());
+			PedidoCompra.setTotal(PedidoCompra.CalcularTotal(PedidoCompra.getItems()));
+			PedidoCompra.setTotalpago(PedidoCompra.CalculaTotalPago(PedidoCompra.getFormas()));
+			
 			
 			getservice().edit(PedidoCompra);
 			updateAlert(PedidoCompra);
@@ -364,6 +394,7 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
     	
     	setColumnProperties();
     	status.getItems().setAll(StatusPedido.values());
+    	cbfornecedores.getItems().setAll(forncedorService.findAll());
     	
     	super.initialize(arg0, arg1);
     }
@@ -388,10 +419,12 @@ public class PedidoCompraController extends AbstractController<PedidoCompra>{
     }
     
 	@FXML
-    public void pdv() {
+    public void movimentacaocomprasitem() {
     	// TODO Auto-generated method stub
 		
-		stageManager.switchScene(FxmlView.PDV);
+		stageManager.switchScene(FxmlView.MOVIMENTACAOCOMPRASITEM);
+		
+		
     	
     } 
 	

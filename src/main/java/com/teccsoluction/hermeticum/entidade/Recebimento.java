@@ -3,9 +3,13 @@ package com.teccsoluction.hermeticum.entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -53,12 +57,9 @@ public class Recebimento extends BaseEntity  implements Serializable {
     private Fornecedor fornecedor;
 
 
-    @ElementCollection(fetch=FetchType.EAGER)
+    @ElementCollection(fetch=FetchType.LAZY)
     @CollectionTable(name = "itens_recebimento", joinColumns = @JoinColumn(name = "id"))
-//    @Lob
-    @Column(name = "qtd")
-    @MapKeyColumn(name = "idit")
-    private Map<Item, String> items = new HashMap<Item, String>();
+    private List<Item> items = new ArrayList<Item>();
 
     private boolean ispago = false;
 
@@ -72,7 +73,7 @@ public class Recebimento extends BaseEntity  implements Serializable {
 
     public Recebimento() {
     	
-    	items = new HashMap<Item, String>();
+    	items = new ArrayList<Item>();
     }
 
     public Recebimento(PedidoCompra pedidoompra) {
@@ -81,7 +82,7 @@ public class Recebimento extends BaseEntity  implements Serializable {
         this.pedidocompra = pedidoompra;
         this.fornecedor = pedidoompra.getFornecedor();
         this.items = pedidoompra.getItems();
-        this.items = new HashMap<Item, String>();
+        this.items = new ArrayList<Item>();
     }
 
     /**
@@ -105,24 +106,24 @@ public class Recebimento extends BaseEntity  implements Serializable {
     }
 
 
-    public BigDecimal CalcularTotal(Map<Item, String> itens) {
+    public BigDecimal CalcularTotal(Set<Item> itens) {
 
     	BigDecimal totalpedido = new BigDecimal(0.00).setScale(4, RoundingMode.UP);
-    	BigDecimal totalpedidoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
+//    	BigDecimal totalpedidoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
 
 
-    	 for (Item key : itens.keySet()) {
+    	 for (Item key : itens) {
              
-    		 String total = itens.get(key);
+    		 BigDecimal total = key.getPrecoUnitario();
          	
-         	totalpedidoaux = new  BigDecimal(total);
+//         	totalpedidoaux = new  BigDecimal(total);
          	
-         	BigDecimal totalped = new BigDecimal(key.getPrecoUnitario().toString());
+//         	BigDecimal totalped = new BigDecimal(key.getPrecoUnitario().toString());
          	
-         	totalped.multiply(totalpedidoaux);
+//         	totalped.multiply(totalpedidoaux);
          	
 
-         	totalpedido = totalpedido.add(totalped);
+         	totalpedido = totalpedido.add(total);
     	 
     	 }
 
@@ -130,10 +131,10 @@ public class Recebimento extends BaseEntity  implements Serializable {
         return totalpedido;
     }
 
-    public void addItem(Item item, String qtd){
+    public void addItem(Item item){
     	
     	
-    	this.getItems().put(item, qtd);
+    	this.getItems().add(item);
     	
     	
     	

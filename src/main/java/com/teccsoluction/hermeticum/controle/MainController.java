@@ -167,17 +167,9 @@ public class MainController implements Initializable{
 		// TODO Auto-generated constructor stub
 	}
     
-	@FXML
-	private void exit(ActionEvent event) {
-		Platform.exit();
-    }
-
-	/**
-	 * Logout and go to the login page
-	 */
     @FXML
     private void logout(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.LOGIN);    	
+    	Platform.exit();   	
     }
 //    
     @FXML

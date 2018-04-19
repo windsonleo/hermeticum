@@ -289,14 +289,16 @@
                      </columnResizePolicy>
                      <columns>
                               <TableColumn fx:id="colUsuarioId" maxWidth="700.0" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="colFirstName" maxWidth="4000.0" prefWidth="75.0" text="FIRST NAME" />
-                              <TableColumn fx:id="colLastName" maxWidth="4000.0" prefWidth="75.0" text="LAST NAME" />
-                              <TableColumn fx:id="colEmail" maxWidth="6000.0" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="colUsername" maxWidth="4000.0" prefWidth="75.0" text="USERNAME" />
+<!--                               <TableColumn fx:id="colLastName" maxWidth="4000.0" prefWidth="75.0" text="LAST NAME" /> -->
+<!--                               <TableColumn fx:id="colEmail" maxWidth="6000.0" prefWidth="75.0" text="Email" /> -->
                               <TableColumn fx:id="colFoto" maxWidth="3500.0" prefWidth="75.0" text="FOTO" />
                               <TableColumn fx:id="colPassword" maxWidth="3500.0" prefWidth="75.0" text="PASSWORD" />
                               <TableColumn fx:id="colAtivo" maxWidth="3500.0" prefWidth="75.0" text="ATIVO" />
                               <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Editar" />
                               <TableColumn fx:id="colDel" maxWidth="3500.0" prefWidth="75.0" text="Deletar" />
+                                                   <TableColumn fx:id="colInfo" maxWidth="3500.0" prefWidth="75.0" text="Infor" />
+                          
                            </columns>
                      <contextMenu>
                         <ContextMenu>
@@ -319,9 +321,9 @@
                                  
                               </Label>
                               <JFXTextField fx:id="id" editable="false" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="73.0" promptText="Id" style="-fx-prompt-text-fill: white;" unFocusColor="#f2efef" />
-                              <JFXTextField fx:id="firstName" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="113.0" prefHeight="25.0" prefWidth="171.0" promptText="First Name" style="-fx-prompt-text-fill: white;" unFocusColor="#f2eeee" />
-                              <JFXTextField fx:id="LastName" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="153.0" prefHeight="25.0" prefWidth="173.0" promptText="Last Name" style="-fx-prompt-text-fill: white;" unFocusColor="#f8f7f7" />
-                              <JFXTextField fx:id="email" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="198.0" prefHeight="25.0" prefWidth="172.0" promptText="Email" style="-fx-prompt-text-fill: white;" unFocusColor="#f8f7f7" />
+                              <JFXTextField fx:id="username" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="113.0" prefHeight="25.0" prefWidth="171.0" promptText="First Name" style="-fx-prompt-text-fill: white;" unFocusColor="#f2eeee" />
+<!--                               <JFXTextField fx:id="LastName" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="153.0" prefHeight="25.0" prefWidth="173.0" promptText="Last Name" style="-fx-prompt-text-fill: white;" unFocusColor="#f8f7f7" /> -->
+<!--                               <JFXTextField fx:id="email" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="198.0" prefHeight="25.0" prefWidth="172.0" promptText="Email" style="-fx-prompt-text-fill: white;" unFocusColor="#f8f7f7" /> -->
                               <JFXTextField fx:id="password" focusColor="WHITE" labelFloat="true" layoutX="8.0" layoutY="234.0" prefHeight="25.0" prefWidth="168.0" promptText="password" style="-fx-prompt-text-fill: white;" unFocusColor="#f8f7f7" />
                               <JFXTextField fx:id="foto" focusColor="#f7f7f8" labelFloat="true" layoutX="8.0" layoutY="273.0" onMouseClicked="#open" promptText="Foto" style="-fx-prompt-text-fill: white;" unFocusColor="#f8f7f7" />
                               <JFXToggleButton fx:id="ativo" layoutX="-4.0" layoutY="3.0" text="Ativo" textFill="#f5eeee" toggleColor="#10c969" unToggleColor="#cd0e0e" />

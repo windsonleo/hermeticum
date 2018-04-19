@@ -19,13 +19,17 @@ import com.teccsoluction.hermeticum.conf.StageManager;
 import com.teccsoluction.hermeticum.entidade.Cliente;
 import com.teccsoluction.hermeticum.entidade.Empresa;
 import com.teccsoluction.hermeticum.entidade.Estoque;
+import com.teccsoluction.hermeticum.entidade.Fornecedor;
 import com.teccsoluction.hermeticum.entidade.Item;
+import com.teccsoluction.hermeticum.entidade.PedidoCompra;
 import com.teccsoluction.hermeticum.entidade.PedidoVenda;
 import com.teccsoluction.hermeticum.entidade.Produto;
 import com.teccsoluction.hermeticum.entidade.Usuario;
 import com.teccsoluction.hermeticum.servico.ClienteServicoImpl;
 import com.teccsoluction.hermeticum.servico.EmpresaServicoImpl;
 import com.teccsoluction.hermeticum.servico.EstoqueServicoImpl;
+import com.teccsoluction.hermeticum.servico.FornecedorServicoImpl;
+import com.teccsoluction.hermeticum.servico.PedidoCompraServicoImpl;
 import com.teccsoluction.hermeticum.servico.PedidoVendaServicoImpl;
 import com.teccsoluction.hermeticum.servico.ProdutoServicoImpl;
 import com.teccsoluction.hermeticum.servico.UsuarioServicoImpl;
@@ -75,7 +79,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Controller
-public class PdvController implements Initializable{
+public class PedidoComprasItemController implements Initializable{
 	
 	
 	@Autowired
@@ -94,7 +98,11 @@ public class PdvController implements Initializable{
 	private ProdutoServicoImpl ProdutoService;
 	
 	@Autowired
-	private PedidoVendaServicoImpl PedidoVendaService;
+	private PedidoCompraServicoImpl PedidoCompraService;
+	
+	
+	@Autowired
+	private FornecedorServicoImpl fornecedorService;
 	
 	@Autowired
 	private ClienteServicoImpl ClienteService;
@@ -168,19 +176,19 @@ public class PdvController implements Initializable{
 	
 	
 	@FXML
-    private JFXButton btaddcliente;
+    private JFXButton btaddfornecedor;
 	
 	@FXML
-    private JFXButton btabrecupom;
+    private JFXButton btabrecompra;
 	
 	@FXML
-    private JFXButton btcancelacupom;
+    private JFXButton btcancelacompra;
 	
 	@FXML
     private JFXButton btcancelaitem;
 	
 	@FXML
-    private JFXButton btencerracaixa;
+    private JFXButton btencerracompra;
 	
 	@FXML
     private JFXButton btpesquisaproduto;
@@ -193,7 +201,7 @@ public class PdvController implements Initializable{
 	
 	
 	@FXML
-    private JFXButton btfinalizavenda;
+    private JFXButton btfinalizacompra;
 	
 	@FXML
     private JFXButton bttrocaroperador;
@@ -256,10 +264,10 @@ public class PdvController implements Initializable{
 	private JFXTextField totalitems	;
 	
 	@FXML
-	private JFXTextField totalvenda;
+	private JFXTextField totalcompra;
 
 	
-	private PedidoVenda pv ;
+	private PedidoCompra pc ;
 	
 //	private  ObservableList<Map.Entry<Item, String>> itemList;
 	
@@ -267,7 +275,7 @@ public class PdvController implements Initializable{
 
     
 	@FXML
-	private   TableView<Item> cupomtabela ;
+	private   TableView<Item> compratabela ;
 	
 	
 //	
@@ -294,30 +302,30 @@ public class PdvController implements Initializable{
     private Label retorno;	
 	
 	
-	private Cliente clientecupom;
+//	private Cliente clientecupom;
+//	
+//	@FXML
+//    private Label cupomnome;	
+//	
+//	@FXML
+//    private Label cupomend;	
+//	
+//	@FXML
+//    private Label cupomdata;	
 	
-	@FXML
-    private Label cupomnome;	
-	
-	@FXML
-    private Label cupomend;	
-	
-	@FXML
-    private Label cupomdata;	
+//
+//	@FXML
+//    private Label pdv;	
 	
 
-	@FXML
-    private Label pdv;	
-	
-
-	@FXML
-    private Label cupomoperador;	
+//	@FXML
+//    private Label cupomoperador;	
 	
 	
-	private FinalizaVendaController control;
+//	private FinalizaVendaController control;
 	
 	
-	private AddClienteController controlcliente;
+	private AddFornecedorController controlfornecedor;
 	
 	private TrocarOperadorController controloperador;
 	
@@ -325,6 +333,8 @@ public class PdvController implements Initializable{
     private Label txtusuarionome;
 	
 	private Cliente cliente;
+	
+	private Fornecedor fornecedorUp;
 	
 	private Usuario operador;
 	
@@ -339,7 +349,7 @@ public class PdvController implements Initializable{
 	
 	
     
-    public PdvController() {
+    public PedidoComprasItemController() {
 		// TODO Auto-generated constructor stub
 	}
     
@@ -551,21 +561,21 @@ public class PdvController implements Initializable{
 	
 	
 	@FXML
-	private void abrecupom(){
+	private void abrecompra(){
 		
 //		  stageManager.switchScene(FxmlView.MOVIMENTACAOPEDIDOVENDA);  
 		
-		if(pv != null){
+		if(pc != null){
 			
-			retorno.setText("Cupom Aberto...");
+			retorno.setText("Compra Aberto...");
 			
 		}else{
 			
-			retorno.setText("Abrindo Cupom...");
+			retorno.setText("Abrindo Compra...");
 			
-			pv = new PedidoVenda();
+			pc = new PedidoCompra();
 			itemList.clear();
-			cupomtabela.setItems(itemList);
+			compratabela.setItems(itemList);
 			
 		}
 		
@@ -573,11 +583,11 @@ public class PdvController implements Initializable{
 	}
 	
 	@FXML
-	private void addcliente(){
+	private void addfornecedor(){
 				
-		retorno.setText("Adicionando Cliente ...");		
-		DialogoEscolhaCliente();
-		retorno.setText("Cliente Adicionado ..." + pv.getCliente());	
+		retorno.setText("Adicionando Fornecedor ...");		
+		DialogoEscolhaFornecedor();
+		retorno.setText("Fornecedor Adicionado ..." + pc.getFornecedor());	
 		
 		
 	}
@@ -595,13 +605,13 @@ public class PdvController implements Initializable{
 	}
 	
 	@FXML
-	private void finalizavenda(){
+	private void finalizacompra(){
 		
 
 		
-		FinalizaVenda(pv);
+		FinalizaCompra(pc);
 		
-		retorno.setText("venda finalizada" + pv.getId());
+		retorno.setText("compra finalizada" + pc.getId());
 		
 	}
 	
@@ -614,20 +624,20 @@ public class PdvController implements Initializable{
 	}
 	
 	@FXML
-	private void cancelacupom(){
+	private void cancelacompra(){
 		
 		
-		pv = new PedidoVenda();
+		pc = new PedidoCompra();
 		
 		clearFields();
 		
 		totalitems.clear();
-		totalvenda.clear();
+		totalcompra.clear();
 		itemList.clear();
 		
-		cupomtabela.setItems(itemList);
+		compratabela.setItems(itemList);
 		
-		retorno.setText(" Cupom CANCELADO ...");
+		retorno.setText(" Compra CANCELADO ...");
 	    
 
 		
@@ -661,15 +671,15 @@ public class PdvController implements Initializable{
 	}
 	
 	@FXML
-	private void encerracaixa(){
+	private void encerracompra(){
 		
 		
-		  retorno.setText("Encerrando Caixa ...");
+		  retorno.setText("Encerrando Compra ...");
 		
 	}
 	
 	
-public void saveAlert(PedidoVenda user){
+public void saveAlert(PedidoCompra user){
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Entity saved successfully.");
@@ -678,7 +688,7 @@ public void saveAlert(PedidoVenda user){
 		alert.showAndWait();
 	}
 	
-	public void updateAlert(PedidoVenda user){
+	public void updateAlert(PedidoCompra user){
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Entity updated successfully.");
@@ -689,28 +699,28 @@ public void saveAlert(PedidoVenda user){
 	
 	
 	
-	public void DialogoEscolhaCliente(){
+	public void DialogoEscolhaFornecedor(){
 		
 		
-		List<Cliente> clientes = ClienteService.findAll();
+		List<Fornecedor> fornecedores = fornecedorService.findAll();
 		
 	
 		try{
 			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addcliente.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addfornecedor.fxml"));
 
 	        Parent root =loader.load();
 	        
-	        controlcliente = (AddClienteController)loader.getController();
+	        controlfornecedor = (AddFornecedorController)loader.getController();
 	        
 
-	        controlcliente.SetTxtFields(clientes);
+	        controlfornecedor.SetTxtFields(fornecedores);
 	       
-	       controlcliente.getTxtcliente().focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+	       controlfornecedor.getTxtfornecedor().focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
 			   
 				if (! isNowFocused) {
 										
-					controlcliente.initialize();
+					controlfornecedor.initialize();
 			        
 			    }
 			});
@@ -718,25 +728,25 @@ public void saveAlert(PedidoVenda user){
 	        
 	        
 	        
-	        controlcliente.getBtconfirma().setOnAction(new EventHandler<ActionEvent>() {
+	       controlfornecedor.getBtconfirma().setOnAction(new EventHandler<ActionEvent>() {
 
 	            @Override
 	            public void handle(ActionEvent event) {
 	            	
-	            	cliente = controlcliente.getClienteEscolhido();
+	            	fornecedorUp = controlfornecedor.getFornecedorEscolhido();
 	            	
-					cliente = ClienteService.getClientePorNome(cliente.getNome());
+	            	fornecedorUp = fornecedorService.getFornecedorPorNome(controlfornecedor.getTxtfornecedorescolhido().getText());
 
 	            	
-	            	pv.setCliente(cliente);
+	            	pc.setFornecedor(fornecedorUp);
 
-	    			System.out.println(" cliente escolhido PDV" + controlcliente.getClienteEscolhido());
+	    			System.out.println(" fornecedor escolhido Compra Controller Item" + controlfornecedor.getFornecedorEscolhido());
 	    			
-					retorno.setText("cliente escolhido" + controlcliente.getTxtclienteescolhido().getText());
-					cupomnome.setText(controlcliente.getTxtclienteescolhido().getText());
+					retorno.setText("FORNECEDOR escolhido" + controlfornecedor.getTxtfornecedorescolhido().getText());
+//					cupomnome.setText(controlcliente.getTxtclienteescolhido().getText());
 					
 	    				    			    					
-	        	    Stage stage = (Stage) controlcliente.getBtconfirma().getScene().getWindow(); //Obtendo a janela atual
+	        	    Stage stage = (Stage) controlfornecedor.getBtconfirma().getScene().getWindow(); //Obtendo a janela atual
 	        	    stage.close(); 
 	            	
 	            
@@ -745,21 +755,21 @@ public void saveAlert(PedidoVenda user){
 	        });
 	        
 	        
-	        controlcliente.getBtcancela().setOnAction(new EventHandler<ActionEvent>() {
+	       controlfornecedor.getBtcancela().setOnAction(new EventHandler<ActionEvent>() {
 
 	            @Override
 	            public void handle(ActionEvent event) {
 
 	            		    			
-	        	    Stage stage = (Stage) controlcliente.getBtcancela().getScene().getWindow(); //Obtendo a janela atual
+	        	    Stage stage = (Stage) controlfornecedor.getBtcancela().getScene().getWindow(); //Obtendo a janela atual
 	        	    stage.close(); 
 	            	
 	            
 	            }
 	        
 	        });
-	        
-	        
+//	        
+//	        
 	        javafx.stage.Window win = new Popup() ;
 	    	
 	    		Stage s1 = new Stage();
@@ -773,7 +783,7 @@ public void saveAlert(PedidoVenda user){
 	    		 
 			}catch (Exception e) {
 
-			System.out.println("erro PDV cliente CONTROL:"+ e);
+			System.out.println("erro iTEM COMPRA CONTROLLER :"+ e);
 			
 			}
 		
@@ -844,7 +854,7 @@ public void saveAlert(PedidoVenda user){
 					System.out.println("operador valido" +  controloperador.getTxtusuario().getText());
 
 					retorno.setText("operador trocado e valido" + controloperador.getTxtusuario().getText());
-					cupomoperador.setText(controloperador.getTxtusuario().getText());
+//					cupomoperador.setText(controloperador.getTxtusuario().getText());
 				
 				}
 
@@ -885,141 +895,172 @@ public void saveAlert(PedidoVenda user){
 	
 	
 	
-	public void FinalizaVenda(PedidoVenda ped) {
+	public void FinalizaCompra(PedidoCompra ped) {
 		
 		List<Estoque> estoques = estoqueService.findAll();
 		
 		estoque = estoques.get(0);
 		
+		pc.setAtivo(true);
+//		PedidoCompra.setNome(nome.getText());
+		pc.setStatus(StatusPedido.FINALIZADO);
+//		PedidoCompra.setSaldoinicial(saldoinicial.getText());
+		pc.setData(new Date());
+		pc.setIspago(false);
+		pc.setData_criacao(new Date());
+		pc.setFornecedor(ped.getFornecedor());
+//		PedidoCompra.setFornecedor(cbfornecedores.getSelectionModel().getSelectedItem());
+		pc.setTotal(ped.CalcularTotal(ped.getItems()));
+		pc.setTotalpago(ped.CalculaTotalPago(ped.getFormas()));
+		pc.setItems(ped.getItems());
 		
-		try{
+		System.out.println("salvando itens no estoque" + pc.getItems());
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/finalizavenda.fxml"));
-
-        Parent root =loader.load();
-        
-      control = (FinalizaVendaController)loader.getController();
-        
-      control.setPedidovenda(pv);
-//      control.getPedidovenda();
-      
-      control.SetFormasEmVenda(pv);
-             
-      control.PreencherTabela();
-        
-      control.PreencherCampos(pv);
-      
-      
-        
-      control.loadFormaDetails(pv);
-        
-      
-//        
-//     control.setBtcancela(btcancela);
-//     control.setBtconfirma(btconfirma);
-     
-     
- 	control.getBtcancela().setOnAction(new EventHandler<ActionEvent>() {
-
-        @Override
-        public void handle(ActionEvent event) {
-
-		 
-//        	pv = control.pedidovenda;
-        	
-        	pv.setFormas(control.getPedidovenda().getFormas());
-
-			pv.getFormas().clear();
-
-			System.out.println("cancelando Forma PDV" + pv.getFormas());
-			
-			 control.SetFormasEmVenda(pv);
-             
-		      control.PreencherTabela();
-		        
-		      control.PreencherCampos(pv);
-		      control.loadFormaDetails(pv);
-			
-    	    Stage stage = (Stage) control.getBtcancela().getScene().getWindow(); //Obtendo a janela atual
-    	    stage.close(); 
-        	
-        
-        }
-    });
-	
-	
-	
-	
- 	control.getBtconfirma().setOnAction(new EventHandler<ActionEvent>() {
-
-        @Override
-        public void handle(ActionEvent event) {
-        	
-//        	pv = control.getPedidovenda();
-        	pv.setFormas(control.getPedidovenda().getFormas());
-        	pv.setAtivo(true);
-        	pv.setData(new Date());
-        	pv.setIspago(true);
-        	pv.setStatus(StatusPedido.FINALIZADO);
-        	pv.setTotal(pv.CalcularTotal(pv.getItems()));
-        	
-        	estoque.OperacaoEstoqueVenda(pv);
-        	estoqueService.edit(estoque);
-        	
-//        	List<Caixa> caixas = caixaService.findAll();
-//        	
-//        	Caixa caixa = caixas.get(0);
-//        	caixa.setSaldo(caixa.getSaldo().add(pv.getTotalVenda()));
-//        	caixaService.edit(caixa);
-
-        	
-    		System.out.println("confirmando Forma PDV" + pv.getFormas());
-
-    		PedidoVendaService.save(pv);
-    		
-    		System.out.println("Pedido Venda Salvo com Formas PDV!" + pv);
-    		
-			retorno.setText("venda salva" + pv);
-
-    		
-    		
-    	    Stage stage = (Stage) control.getBtconfirma().getScene().getWindow(); //Obtendo a janela atual
-    	    stage.close(); //
-    		
-    		clearFields();
-    		
-    		updateAlert(pv);
-    		
-    		itemList.clear();
-    		
-    		pv = new PedidoVenda();
-    		
-    		totalitems.clear();
-    		totalvenda.clear();
-    		
-        
-        }
-    });
-	
-
-        javafx.stage.Window win = new Popup() ;
+    	estoque.OperacaoEstoqueCompra(pc);
+    	estoqueService.edit(estoque);
+		
     	
-    		Stage s1 = new Stage();
-    		s1.initOwner(win);
-    		s1.initModality(Modality.APPLICATION_MODAL);
-    		s1.initStyle(StageStyle.UNDECORATED);
-    		
-    		 Scene scene = new Scene(root);
-    		 
-    		 s1.setScene(scene);
-    		 s1.show();
-    		 
-		}catch (Exception e) {
-
-		System.out.println("erro PDV CONTROL:"+ e);
+    	System.out.println("salvando compra" + pc);
+		PedidoCompraService.save(pc);
 		
-		}
+		clearFields();
+		totalitems.clear();
+		totalcompra.clear();
+		itemList.clear();
 		
+		compratabela.setItems(itemList);
+		
+		
+		
+		
+//		try{
+//		
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/finalizavenda.fxml"));
+//
+//        Parent root =loader.load();
+//        
+//      control = (FinalizaVendaController)loader.getController();
+//        
+//      control.setPedidovenda(pc);
+////      control.getPedidovenda();
+//      
+//      control.SetFormasEmVenda(pc);
+//             
+//      control.PreencherTabela();
+//        
+//      control.PreencherCampos(pc);
+//      
+//      
+//        
+//      control.loadFormaDetails(pc);
+//        
+//      
+////        
+////     control.setBtcancela(btcancela);
+////     control.setBtconfirma(btconfirma);
+//     
+//     
+// 	control.getBtcancela().setOnAction(new EventHandler<ActionEvent>() {
+//
+//        @Override
+//        public void handle(ActionEvent event) {
+//
+//		 
+////        	pv = control.pedidovenda;
+//        	
+//        	pc.setFormas(control.getPedidovenda().getFormas());
+//
+//			pc.getFormas().clear();
+//
+//			System.out.println("cancelando Forma PDV" + pc.getFormas());
+//			
+//			 control.SetFormasEmVenda(pc);
+//             
+//		      control.PreencherTabela();
+//		        
+//		      control.PreencherCampos(pc);
+//		      control.loadFormaDetails(pc);
+//			
+//    	    Stage stage = (Stage) control.getBtcancela().getScene().getWindow(); //Obtendo a janela atual
+//    	    stage.close(); 
+//        	
+//        
+//        }
+//    });
+//	
+//	
+//	
+//	
+// 	control.getBtconfirma().setOnAction(new EventHandler<ActionEvent>() {
+//
+//        @Override
+//        public void handle(ActionEvent event) {
+//        	
+////        	pv = control.getPedidovenda();
+//        	pc.setFormas(control.getPedidovenda().getFormas());
+//        	pc.setAtivo(true);
+//        	pc.setData(new Date());
+//        	pc.setIspago(true);
+//        	pc.setStatus(StatusPedido.FINALIZADO);
+//        	pc.setTotal(pc.CalcularTotal(pc.getItems()));
+//        	
+//        	estoque.OperacaoEstoqueVenda(pc);
+//        	estoqueService.edit(estoque);
+//        	
+////        	List<Caixa> caixas = caixaService.findAll();
+////        	
+////        	Caixa caixa = caixas.get(0);
+////        	caixa.setSaldo(caixa.getSaldo().add(pv.getTotalVenda()));
+////        	caixaService.edit(caixa);
+//
+//        	
+//    		System.out.println("confirmando Forma PDV" + pc.getFormas());
+//
+//    		PedidoVendaService.save(pc);
+//    		
+//    		System.out.println("Pedido Venda Salvo com Formas PDV!" + pc);
+//    		
+//			retorno.setText("venda salva" + pc);
+//
+//    		
+//    		
+//    	    Stage stage = (Stage) control.getBtconfirma().getScene().getWindow(); //Obtendo a janela atual
+//    	    stage.close(); //
+//    		
+//    		clearFields();
+//    		
+//    		updateAlert(pc);
+//    		
+//    		itemList.clear();
+//    		
+//    		pc = new PedidoVenda();
+//    		
+//    		totalitems.clear();
+//    		totalvenda.clear();
+//    		
+//        
+//        }
+//    });
+//	
+//
+//        javafx.stage.Window win = new Popup() ;
+//    	
+//    		Stage s1 = new Stage();
+//    		s1.initOwner(win);
+//    		s1.initModality(Modality.APPLICATION_MODAL);
+//    		s1.initStyle(StageStyle.UNDECORATED);
+//    		
+//    		 Scene scene = new Scene(root);
+//    		 
+//    		 s1.setScene(scene);
+//    		 s1.show();
+//    		 
+//		}catch (Exception e) {
+//
+//		System.out.println("erro PDV CONTROL:"+ e);
+//		
+//		}
+//		
 		
 		
 		
@@ -1044,7 +1085,7 @@ public void saveAlert(PedidoVenda user){
         
         
         txthora.setText(getHora());
-        txtcontext.setText("Pdv");
+        txtcontext.setText("Pedido Compra Item");
         empresanome.setText("Empresa Tal");
         
 		
@@ -1053,8 +1094,8 @@ public void saveAlert(PedidoVenda user){
 
 	public void loadItemDetails(){
 	itemList.clear();
-	itemList.addAll(pv.getItems());
-	cupomtabela.setItems(itemList);
+	itemList.addAll(pc.getItems());
+	compratabela.setItems(itemList);
 //	setColumnProperties();
 }
 	
@@ -1097,13 +1138,13 @@ public void saveAlert(PedidoVenda user){
 		CarregarHeader();
 		
        	
-		 if(pv == null){
-	        	pv = new PedidoVenda();
+		 if(pc == null){
+	        	pc = new PedidoCompra();
 //	        	cupomtabela = new TableView<>(itemList);
 		 }	
 	        
-	        itemList = FXCollections.observableArrayList(pv.getItems());
-	        cupomtabela.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+	        itemList = FXCollections.observableArrayList(pc.getItems());
+	        compratabela.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		List<Produto> prods = ProdutoService.findAll();
 //		List<Cliente> clientes = ClienteService.findAll();
@@ -1119,7 +1160,7 @@ public void saveAlert(PedidoVenda user){
 		        
 		    	codigobarra.setText(produto.getCodebar());
 		    	descricao.setText(produto.getDescricao());
-		    	valorunitario.setText(produto.getPrecovenda().toString());
+		    	valorunitario.setText(produto.getPrecocusto().toString());
 
 		        
 		        
@@ -1135,12 +1176,12 @@ public void saveAlert(PedidoVenda user){
 				Produto produtoaux = ProdutoService.getProdutoPorCode(codigobarra.getText());
 				
 				 java.math.BigDecimal qtdaux = new java.math.BigDecimal(qtd.getText());
-				 java.math.BigDecimal tot = produtoaux.getPrecovenda().multiply(qtdaux);
+				 java.math.BigDecimal tot = produtoaux.getPrecocusto().multiply(qtdaux);
 			        
 			        
 		    	codigobarra.setText(produtoaux.getCodebar());
 		    	descricao.setText(produtoaux.getDescricao());
-		    	valorunitario.setText(produtoaux.getPrecovenda().toString());
+		    	valorunitario.setText(produtoaux.getPrecocusto().toString());
 		    	valortotal.setText(tot.toString());
 		        
 		        
@@ -1151,14 +1192,14 @@ public void saveAlert(PedidoVenda user){
 		
 		
 		
-		int totit = pv.getItems().size();
+		int totit = pc.getItems().size();
 		String toit = String.valueOf(totit);
 		
-		BigDecimal tvenda = pv.getTotalVenda();
+		BigDecimal tvenda = pc.getTotalCompra();
 		
 		
 		totalitems.setText(toit);
-		totalvenda.setText(tvenda.toString());
+		totalcompra.setText(tvenda.toString());
 		
 //		cupomoperador.setText(operador.getUsername());
 //		cupomnome.setText(pv.getCliente().getNome());
@@ -1180,22 +1221,22 @@ public void saveAlert(PedidoVenda user){
 	        it.setTotalItem(it.getPrecoUnitario().multiply(qtdaux));
 	        it.setQtd(qtdaux);
 	        
-	        pv.addItem(it);
+	        pc.addItem(it);
 	        
-	        cupomdata.setText(new Date().toLocaleString());
+//	        cupomdata.setText(new Date().toLocaleString());
 	        
-			int totit = pv.getItems().size();
+			int totit = pc.getItems().size();
 			String toit = String.valueOf(totit);
 			
-			BigDecimal tvenda = pv.getTotalVenda();
+			BigDecimal tvenda = pc.getTotalCompra();
 			
 			
 			totalitems.setText(toit);
-			totalvenda.setText(tvenda.toString());
+			totalcompra.setText(tvenda.toString());
 //			 itemList.addAll(pv.getItems().entrySet());
 //			 itemList = FXCollections.observableArrayList(pv.getItems().entrySet());
 			
-			cupomtabela.setItems(itemList);
+			compratabela.setItems(itemList);
 //		     cupomtabela.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		    
 	        
@@ -1221,7 +1262,7 @@ public void saveAlert(PedidoVenda user){
 		usuarioUp = stageManager.GetaUsuarioStage();
 		
 		txtusuarionome.setText(usuarioUp.getUsername());
-		cupomoperador.setText(usuarioUp.getUsername());
+//		cupomoperador.setText(usuarioUp.getUsername());
 	
 		
 	}

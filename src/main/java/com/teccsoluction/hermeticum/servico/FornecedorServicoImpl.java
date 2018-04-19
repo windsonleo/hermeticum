@@ -5,11 +5,13 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.teccsoluction.hermeticum.dao.FornecedorDAO;
 import com.teccsoluction.hermeticum.entidade.Fornecedor;
+import com.teccsoluction.hermeticum.entidade.Produto;
 import com.teccsoluction.hermeticum.framework.AbstractEntityService;
 
 
@@ -25,7 +27,7 @@ public class FornecedorServicoImpl extends  AbstractEntityService<Fornecedor>{
 	
 	
 	public FornecedorServicoImpl() {
-		  super(Fornecedor.class, "produto");
+		  super(Fornecedor.class, "fornecedor");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -72,6 +74,13 @@ public class FornecedorServicoImpl extends  AbstractEntityService<Fornecedor>{
 	}
 
 
+    public Fornecedor getFornecedorPorNome(String nomefantasia){
+    	
+    	
+    	
+    	
+    	return dao.getFornecedorPorNome(nomefantasia);
+    }
 
 	
 

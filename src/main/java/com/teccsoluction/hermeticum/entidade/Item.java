@@ -85,7 +85,7 @@ public  class Item implements Serializable, Comparable<Item>{
 @Override
 public String toString() {
 
-	return id.toString();
+	return codigo.toString();
 }
 
 @Override
@@ -124,15 +124,15 @@ public String TotalizacaoPoritem(String qtd){
 //public int hashCode() {
 //	final int prime = 31;
 //	int result = 1;
-//	result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+//	result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 //	return result;
 //}
-
-
-
-/* (non-Javadoc)
- * @see java.lang.Object#equals(java.lang.Object)
- */
+//
+//
+//
+///* (non-Javadoc)
+// * @see java.lang.Object#equals(java.lang.Object)
+// */
 //@Override
 //public boolean equals(Object obj) {
 //	if (this == obj)
@@ -142,10 +142,10 @@ public String TotalizacaoPoritem(String qtd){
 //	if (getClass() != obj.getClass())
 //		return false;
 //	Item other = (Item) obj;
-//	if (nome == null) {
-//		if (other.nome != null)
+//	if (codigo == null) {
+//		if (other.codigo != null)
 //			return false;
-//	} else if (!nome.equals(other.nome))
+//	} else if (!codigo.equals(other.codigo))
 //		return false;
 //	return true;
 //}

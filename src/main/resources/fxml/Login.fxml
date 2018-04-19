@@ -24,11 +24,24 @@
                         <Image url="@../images/hermeticum.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="38.0" layoutY="146.0" text="HERMETECH" textFill="#fcfafa" textOverrun="CLIP">
+                  <Label layoutX="38.0" layoutY="146.0" text="HERMETECH" textFill="#f2a261" textOverrun="CLIP">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
+                  <ToolBar layoutX="82.0" layoutY="438.0" style="-fx-background-color: transparent;">
+                     <items>
+                        <JFXButton fx:id="btexit" contentDisplay="GRAPHIC_ONLY" onAction="#logout" styleClass="btnMenu">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/off.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </items>
+                  </ToolBar>
                </children>
                <HBox.margin>
                   <Insets bottom="-25.0" top="-25.0" />

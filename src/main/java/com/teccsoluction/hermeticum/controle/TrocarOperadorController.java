@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.teccsoluction.hermeticum.entidade.Cliente;
 import com.teccsoluction.hermeticum.entidade.PedidoVenda;
 import com.teccsoluction.hermeticum.entidade.Produto;
+import com.teccsoluction.hermeticum.entidade.Usuario;
 import com.teccsoluction.hermeticum.servico.ClienteServicoImpl;
 
 import javafx.application.Platform;
@@ -25,33 +26,30 @@ import lombok.Setter;
 @Getter
 @Setter
 @Controller
-public class AddClienteController  implements Initializable {
+public class TrocarOperadorController  implements Initializable {
 
 
     
 	@FXML
-	private TextField txtcliente;
+	private TextField txtusuario;
 	
 	@FXML
     private JFXButton btcancela;	
 	
 	@FXML
-    private JFXButton btconfirma;
+    private JFXButton bttrocar;
 	
 	@FXML
-	private TextField txtclienteescolhido;
-	
-//	@Autowired
-//	private ClienteServicoImpl ClienteService;
+	private TextField txtsenha;
 	
 	
-	public Cliente cliente;
+	public Usuario usuario;
 	
 	
 	
     
     
-    public AddClienteController() {
+    public TrocarOperadorController() {
      
         
 
@@ -61,51 +59,24 @@ public class AddClienteController  implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+ 
 		 
 	}
 
-
-
 	
-	public void SetTxtFields(List<Cliente> clientes){
+	public Usuario GetCampos(){
 		
-
-			TextFields.bindAutoCompletion(txtcliente,clientes);
-					
+		usuario.setUsername(txtusuario.getText());
+		usuario.setPassword(txtsenha.getText());
 		
-//					txtclienteescolhido.setText(txtcliente.getText());
-					btconfirma.setDisable(true);
-					btcancela.setDisable(false);
-
-			        
-			        
-
-		
-		
-	}
-	
-	
-	
-	public void SetTxtFieldClienteEscolhido(Cliente cliente){
-		
-		btconfirma.setDisable(false);
+		bttrocar.setDisable(false);
 		btcancela.setDisable(false);
 		
 		
+		return usuario;
 	}	
 	
-	
-	public Cliente getClienteEscolhido(){
-			
-			cliente = new Cliente();
-			cliente.setNome(txtcliente.getText());
 
-		return cliente;
-	}	
-	
-	
-	
 	public void exit() {
 		Platform.exit();
     }
@@ -113,14 +84,18 @@ public class AddClienteController  implements Initializable {
 	
 
 	public void initialize(){
-				
+			
+		usuario.setUsername(txtusuario.getText());
+		usuario.setPassword(txtsenha.getText());
 		
-		txtclienteescolhido.setText(txtcliente.getText());
-		btconfirma.setDisable(false);
+		bttrocar.setDisable(false);
 		btcancela.setDisable(false);
-		
+
 		
 	}	
+	
+	
+	
 
 
 	

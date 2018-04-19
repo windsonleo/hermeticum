@@ -286,6 +286,7 @@
                         <ToolBar orientation="VERTICAL" style="-fx-background-color: #FF9933; -fx-background-radius: 10;" HBox.hgrow="SOMETIMES">
                            <items>
                               <JFXButton fx:id="btrecebimento" buttonType="RAISED" onAction="#movimentacaorecebimento" ripplerFill="#0c69cc" styleClass="btnMenu" text="Recebimentos" textFill="#fbf8f8" />
+                              <JFXButton fx:id="btcomprasitem" buttonType="RAISED" onAction="#movimentacaocomprasitem" prefHeight="25.0" prefWidth="91.0" ripplerFill="#0c69cc" styleClass="btnMenu" text="Compras" textFill="#fbf8f8" />
             <!--                   <JFXButton fx:id="fecharcaixa" buttonType="RAISED" onAction="#fecharcaixa" text="Fechar Caixa" /> -->
             <!--                   <JFXButton fx:id="pdv" buttonType="RAISED" onAction="#pdv" prefHeight="25.0" prefWidth="75.0" text="PDV" /> -->
                            </items>
@@ -317,6 +318,7 @@
                                                 <TableColumn fx:id="colAtivo" maxWidth="3500.0" prefWidth="75.0" text="ATIVO" />
                         <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Editar" />
                         <TableColumn fx:id="colDel" maxWidth="3500.0" prefWidth="75.0" text="Deletar" />
+                                                 <TableColumn fx:id="colInfo" maxWidth="3500.0" prefWidth="75.0" text="Infor" />
                         
                                              </columns>
                      <contextMenu>
@@ -344,8 +346,9 @@
                   <!--             <JFXTextField fx:id="saldoinicial" labelFloat="true" layoutX="27.0" layoutY="316.0" promptText="Saldo Inicial" unFocusColor="#f8f7f7" /> -->
                    			 <JFXToggleButton fx:id="ativo" layoutX="19.0" layoutY="41.0" text="Ativo" textFill="#fffbfb" toggleColor="#0fb544" unToggleColor="#c91515" />
                   
-                                                <JFXButton fx:id="atualizar" buttonType="RAISED" disable="true" layoutX="7.0" layoutY="238.0" onAction="#atualizar" styleClass="btnFormAtualizar" text="Atualizar" textFill="#fff8f8" />
-                              <JFXButton fx:id="salvar" layoutX="113.0" layoutY="238.0" onAction="#salvar" prefHeight="25.0" prefWidth="60.0" styleClass="btnFormSalvar" text="Salvar" textFill="#f8f4f4" />
+                                                <JFXButton fx:id="atualizar" buttonType="RAISED" disable="true" layoutX="7.0" layoutY="256.0" onAction="#atualizar" styleClass="btnFormAtualizar" text="Atualizar" textFill="#fff8f8" />
+                              <JFXButton fx:id="salvar" layoutX="113.0" layoutY="256.0" onAction="#salvar" prefHeight="25.0" prefWidth="60.0" styleClass="btnFormSalvar" text="Salvar" textFill="#f8f4f4" />
+                              <JFXComboBox fx:id="cbfornecedores" focusColor="#f4f5f8" layoutX="10.0" layoutY="199.0" prefHeight="25.0" prefWidth="168.0" promptText="Escolha o Fornecedor" style="-fx-prompt-text-fill: white;" unFocusColor="#f5f0f0" />
                                   
                                  </children>
                                  

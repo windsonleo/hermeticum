@@ -1,18 +1,17 @@
 package com.teccsoluction.hermeticum.entidade;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,23 +33,17 @@ public class PedidoCompra extends Pedido implements Serializable {
     private Fornecedor fornecedor;
 
 
-    @OneToMany(mappedBy = "pedidocompra")
-    @JsonIgnore
-    private List<Recebimento> recebimentos;
+    private Recebimento recebimentos;
 
     @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name = "itens_pedidocompra", joinColumns = @JoinColumn(name = "id"))
-//    @JsonManagedReference
-//    @Lob
-    @Column(name = "qtd")
-    @MapKeyColumn(name = "idit")
-    private Map<Item, String> items = new HashMap<>();
+    private List<Item> items = new ArrayList<>();
 
     
     //CONSTRUTOR PADRAO
     public PedidoCompra() {
         super();
-        this.items = new HashMap<Item, String>();
+        this.items = new ArrayList<Item>();
 
         
     }
@@ -62,10 +55,10 @@ public class PedidoCompra extends Pedido implements Serializable {
     }
     
     
-    public void addItem(Item item, String qtd){
+    public void addItem(Item item){
     	
     	
-    	this.getItems().put(item, qtd);
+    	this.getItems().add(item);
     	
     	
     	
@@ -87,5 +80,9 @@ public class PedidoCompra extends Pedido implements Serializable {
 //    	return  CalcularTotal(getItems());
 //    }
 
-
+    public BigDecimal getTotalCompra(){
+    	
+    	
+    	return  CalcularTotal(getItems());
+    }
 }

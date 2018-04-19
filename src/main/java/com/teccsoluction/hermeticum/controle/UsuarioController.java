@@ -56,11 +56,11 @@ public class UsuarioController extends AbstractController<Usuario> {
 	@FXML
 	private JFXTextField id;
 	@FXML
-	private JFXTextField firstName;
-	@FXML
-	private JFXTextField LastName;
-	@FXML
-	private JFXTextField email;
+	private JFXTextField username;
+//	@FXML
+//	private JFXTextField LastName;
+//	@FXML
+//	private JFXTextField email;
 	
 	@FXML
 	private JFXTextField password;
@@ -76,13 +76,13 @@ public class UsuarioController extends AbstractController<Usuario> {
 	private TableColumn<Usuario, Long> colUsuarioId;
 
 	@FXML
-	private TableColumn<Usuario, String> colFirstName;
+	private TableColumn<Usuario, String> colUsername;
 	
-	@FXML
-	private TableColumn<Usuario, String> colLastName;
+//	@FXML
+//	private TableColumn<Usuario, String> colLastName;
 
-	@FXML
-	private TableColumn<Usuario, String> colEmail;
+//	@FXML
+//	private TableColumn<Usuario, String> colEmail;
 	
 	@FXML
 	private TableColumn<Usuario, String> colFoto;
@@ -136,7 +136,7 @@ public class UsuarioController extends AbstractController<Usuario> {
    	private void clearFields() {
 		
    		id.setText(null);
-   		firstName.clear();
+   		username.clear();
 //   		LastName.clear();
    		password.clear();
    		foto.clear();
@@ -148,7 +148,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 		  Usuario usuario = new Usuario();
 //		  usuario.setId(2563L);
 		  usuario.setAtivo(true);
-		  usuario.setUsername(firstName.getText());
+		  usuario.setUsername(username.getText());
 		  usuario.setPassword(password.getText());
 		  usuario.setFoto(foto.getText());
 //		  usuario.setEmail(email.getText());
@@ -224,7 +224,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 		  Usuario usuario = new Usuario();
 		  usuario.setId(idlong);
 		  usuario.setAtivo(true);
-		  usuario.setUsername(firstName.getText());
+		  usuario.setUsername(username.getText());
 //		  usuario.setLastName(LastName.getText());
 		  usuario.setPassword(password.getText());
 		  usuario.setFoto(foto.getText());
@@ -294,10 +294,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 				 }));*/
 				
 				colUsuarioId.setCellValueFactory(new PropertyValueFactory<>("id"));
-				colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-				colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+				colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+//				colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 				colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
-				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+//				colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 				colFoto.setCellValueFactory(new PropertyValueFactory<>("foto"));
 				colAtivo.setCellValueFactory(new PropertyValueFactory<>("ativo"));
 				
@@ -367,7 +367,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
 						private void updateUsuario(Usuario user) {
 							id.setText(user.getId().toString());
-							firstName.setText(user.getUsername());
+							username.setText(user.getUsername());
 //							LastName.setText(user.getLastName());
 							password.setText(user.getPassword());
 //							email.setText(user.getEmail());
@@ -440,8 +440,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 							
 						}
 						private void DeleteUsuario(Usuario user) {
-
+							
+							
 							usuarioService.delete(user.getId());
+							updateAlert(user);
 							loadEntityDetails();
 							
 							}

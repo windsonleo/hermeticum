@@ -21,7 +21,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
 //@Entity
 //@Table(name = "FORMAPAGAMENTO")
 public class FormaPagamento  implements Serializable {
@@ -82,5 +81,30 @@ public class FormaPagamento  implements Serializable {
         return nome;
     }
 
+    
+  @Override
+  public boolean equals(Object obj) {
+  	if (this == obj)
+  		return true;
+  	if (obj == null)
+  		return false;
+  	if (getClass() != obj.getClass())
+  		return false;
+  	FormaPagamento other = (FormaPagamento) obj;
+  	if (nome == null) {
+  		if (other.tipo != null)
+  			return false;
+  	} else if (!tipo.equals(other.tipo))
+  		return false;
+  	return true;
+  } 
+  
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+	return result;
+}
 
 }

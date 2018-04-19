@@ -299,6 +299,7 @@
                                     
                               <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Editar" />
                               <TableColumn fx:id="colDel" maxWidth="3500.0" prefWidth="75.0" text="Deletar" />
+                               <TableColumn fx:id="colInfo" maxWidth="3500.0" prefWidth="75.0" text="Infor" />
                               
                    </columns>
                      <contextMenu>

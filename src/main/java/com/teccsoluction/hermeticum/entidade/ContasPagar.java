@@ -66,16 +66,18 @@ public class ContasPagar extends Conta implements Serializable {
     	BigDecimal totalpedidoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
 
 
-        for (Item key : recebimento.getItems().keySet()) {
+        for (Item key : recebimento.getItems()) {
         	
         	//QTD ITEM
-        	String total = recebimento.getItems().get(key);
+        	BigDecimal qtd = key.getQtd();
         	
-        	totalpedidoaux = new  BigDecimal(total);
         	
-        	BigDecimal totalped = new BigDecimal(key.getPrecoUnitario().toString());
         	
-        	totalped = totalped.multiply(totalpedidoaux);
+//        	totalpedidoaux = new  BigDecimal(total);
+        	
+        	BigDecimal totalped = key.getPrecoUnitario();
+        	
+        	totalped = totalped.multiply(qtd);
         	
 
         	totalpedido = totalpedido.add(totalped);
