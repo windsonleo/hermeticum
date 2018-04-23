@@ -54,15 +54,15 @@ public class PedidoVenda extends Pedido implements Serializable {
 
 
     
-    @ElementCollection(fetch=FetchType.EAGER)
-    @CollectionTable(name = "itens_pedidovenda", joinColumns = @JoinColumn(name = "id"))
-    private List<Item> items = new ArrayList<Item>();
+//    @ElementCollection(fetch=FetchType.EAGER)
+//    @CollectionTable(name = "itens_pedidovenda", joinColumns = @JoinColumn(name = "id"))
+//    private List<Item> items = new ArrayList<Item>();
 
 
     public PedidoVenda() {
         super();
         
-        this.items = new ArrayList<Item>();
+//        this.items = new ArrayList<Item>();
 
 
     }

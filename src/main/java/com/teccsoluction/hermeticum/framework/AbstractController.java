@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 
 import com.jfoenix.controls.JFXButton;
 import com.teccsoluction.hermeticum.conf.StageManager;
+import com.teccsoluction.hermeticum.controle.EstoqueInfomacaoController;
 import com.teccsoluction.hermeticum.entidade.Estoque;
 import com.teccsoluction.hermeticum.entidade.Usuario;
 import com.teccsoluction.hermeticum.view.FxmlView;
@@ -24,8 +25,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -41,6 +45,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 import lombok.Setter;
@@ -186,6 +193,9 @@ public abstract class AbstractController<Entity> implements Initializable {
 	
 	@FXML
     private Label txtcontext;
+	
+//	
+	private FrameInternoController<Entity> frameinterno;
 	
 	
     
@@ -536,6 +546,8 @@ public void saveAlert(Entity user){
 			
 			
 		}
+		
+		
 			
 			
 			public void SetarUsuarioLoginAbstract() {
@@ -626,7 +638,7 @@ public void saveAlert(Entity user){
 									
 									btnInfo.setOnAction(e ->{
 										Entity empresa = getTableView().getItems().get(getIndex());
-										updateEntity(empresa);
+										InfoEntity(empresa);
 									});
 									
 									btnInfo.setStyle("-fx-background-color: transparent;");
@@ -649,22 +661,56 @@ public void saveAlert(Entity user){
 								
 							}
 
-							private void updateEntity(Entity user) {
-//								id.setText(user.getId().toString());
-//								nome.setText(user.getNome());
-//								status.setText(user.getStatus().name());
-//								saldoinicial.setText(user.getSaldoinicial());
-						
-//								atualizar.setDisable(false);
-////								
-//								salvar.setDisable(true);
-//								ligarLuz();
-//								dob.setValue(user.getDob());
-//								if(user.getGender().equals("Male")) rbMale.setSelected(true);
-//								else rbFemale.setSelected(true);
-//								cbRole.getSelectionModel().select(user.getRole());
+							@SuppressWarnings("unchecked")
+							private void InfoEntity(Entity user) {
+
 								
-								System.out.println("Update Entity Informação" + user);
+								
+
+								try{
+									
+									FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/informacao"+ entityAlias +".fxml"));
+
+							        Parent root =loader.load();
+							        
+//							        frameinterno = new FrameInternoController<Entity>(entityAlias);
+//							        Label lb = new Label();
+//							        lb.setText(entityAlias);
+							        
+							        frameinterno =(FrameInternoController<Entity>)loader.getController();
+//							        frameinterno.initialize(arg0, arg1);
+//							        frameinterno.init(lb);
+//							        frameinterno.SetarItems(user);
+//							        frameinterno.SetarItems(entity);
+					
+//							        controlestoque.initialize(user);
+//							        controlestoque.setColumnPropertiesItem(user);
+							        
+//							        frameinterno.SetarItems(user);
+//							        frameinterno.CarregarHeader();
+							        
+							        
+							        
+							        javafx.stage.Window win = new Popup() ;
+							    	
+							    		Stage s1 = new Stage();
+							    		s1.initOwner(win);
+							    		s1.initModality(Modality.APPLICATION_MODAL);
+//							    		s1.initStyle(StageStyle.UNDECORATED);
+							    		 Scene scene = new Scene(root);
+							    		 
+							    		 s1.setScene(scene);
+							    		 s1.show();
+							    		 
+									}catch (Exception e) {
+
+									System.out.println("erro ABSTRACT  chamar view INFO:"+ e + "entityalias" + entityAlias);
+									
+									}
+								
+								
+								
+								
 							}
 							
 
@@ -672,6 +718,194 @@ public void saveAlert(Entity user){
 						return cell;
 					}
 				};
-			 
-			 
-}
+
+				
+				
+				
+				@FXML
+				private void informacaoempresa(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOEMPRESA);  
+					
+					
+					
+				}
+				
+				
+				   
+					@FXML
+					private void informacaopdv(){
+						
+						  stageManager.switchScene(FxmlView.INFORMACAOPDV);  
+						
+						
+						
+					}
+				
+				@FXML
+				private void informacaofornecedor(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOFORNECEDOR);  
+					
+					
+					
+				}
+				
+				@FXML
+				private void informacaofuncionario(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOFUNCIONARIO);  
+					
+					
+					
+				}
+				
+				
+				@FXML
+				private void informacaocliente(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOCLIENTE);  
+					
+					
+					
+				}
+			//	
+			//	
+			//	
+			//	
+				@FXML
+				private void informacaocategoria(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOCATEGORIA);  
+					
+					
+					
+				}
+			//	
+			//	
+				@FXML
+				private void informacaoproduto(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOPRODUTO);  
+					
+					
+					
+				}
+			//	
+			//	
+			//	
+//				@FXML
+//				private void informacaoformapagamento(){
+//					
+//					  stageManager.switchScene(FxmlView.INFORMACAOFORMAPAGAMENTO);  
+//					
+//					
+//					
+//				}
+			//	
+				@FXML
+				private void informacaoconfiguracao(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOCONFIGURACAO);  
+					
+					
+					
+				}
+			//	
+//				  
+//				@FXML
+//				private void informacaocaixa(){
+//					
+//					  stageManager.switchScene(FxmlView.INFORMACAOCAIXA);  
+//					
+//					
+//					
+//				}
+			//	
+			//	
+				@FXML
+				private void informacaousuario(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOUSUARIO);  
+					
+					
+					
+				}
+			//	
+//				@FXML
+//				private void informacaopagamento(){
+//					
+//					  stageManager.switchScene(FxmlView.INFORMACAOPAGAMENTO);  
+//					
+//					
+//					
+//				}
+			//	
+			//	
+				@FXML
+				private void informacaoestoque(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOESTOQUE);  
+					
+					
+					
+				}
+			//	
+				@FXML
+				private void informacaocontasreceber(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOCONTASRECEBER);  
+					
+					
+					
+				}
+			//	
+			//	
+				@FXML
+				private void informacaocontaspagar(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOCONTASPAGAR);  
+					
+					
+					
+				}
+			//	
+				@FXML
+				private void informacaorecebimento(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAORECEBIMENTO);  
+					
+					
+					
+				}
+			//	
+			//	
+				@FXML
+				private void informacaopedidocompra(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOPEDIDOCOMPRA);  
+					
+					
+					
+				}
+			//	
+				@FXML
+				private void informacaopedidovenda(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOPEDIDOVENDA);  
+					
+					
+					
+				}
+				
+				@FXML
+				private void informacaofinanceiro(){
+					
+					  stageManager.switchScene(FxmlView.INFORMACAOFINANCEIRO);  
+					
+					
+					
+				}
+				
+} 
+

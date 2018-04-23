@@ -281,30 +281,6 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane style="-fx-background-color: #f2a261;">
-                     <children>
-                        <Label fx:id="txttotalproduto" layoutX="3.0" layoutY="20.0" text="total produto" textFill="#dc602e">
-                           <font>
-                              <Font name="Forte" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txttotalprodutovalor" layoutX="224.0" layoutY="20.0" text="Label" textFill="#dc602e">
-                           <font>
-                              <Font name="Forte" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txttotalitemvalor" layoutX="514.0" layoutY="20.0" text="Label" textFill="#dc602e">
-                           <font>
-                              <Font name="Forte" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="txttotalitem" layoutX="343.0" layoutY="20.0" text="total item" textFill="#dc602e">
-                           <font>
-                              <Font name="Forte" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
                   <HBox>
                      <children>
             
@@ -323,6 +299,7 @@
                         <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Editar" />
                         <TableColumn fx:id="colDel" maxWidth="3500.0" prefWidth="75.0" text="Deletar" />
                          <TableColumn fx:id="colInfo" maxWidth="3500.0" prefWidth="75.0" text="Infor" />
+                           <TableColumn fx:id="colInfom" maxWidth="3500.0" prefWidth="75.0" text="Inform2" />
                         
                                              </columns>
                      <contextMenu>
@@ -372,18 +349,6 @@
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </VBox.margin>
             		</HBox>
-                  <TableView fx:id="itemestoquetabela" cacheHint="QUALITY" style="-fx-background-color: white; -fx-control-inner-background: white;" tableMenuButtonVisible="true">
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <columns>
-                        <TableColumn fx:id="colItemCode" prefWidth="75.0" text="codigo" />
-                        <TableColumn fx:id="colItemDescricao" prefWidth="75.0" text="descricao" />
-                        <TableColumn fx:id="colItemQtd" prefWidth="75.0" text="qtd" />
-                        <TableColumn fx:id="colItemValorUnitario" prefWidth="75.0" text="Valor Unit" />
-                        <TableColumn fx:id="colItemValorTotal" prefWidth="75.0" text="Valor Total" />
-                     </columns>
-                  </TableView>
                </children>
             </VBox>
          </children>

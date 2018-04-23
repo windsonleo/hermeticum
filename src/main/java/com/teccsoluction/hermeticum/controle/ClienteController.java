@@ -393,7 +393,7 @@ public class ClienteController extends AbstractController<Cliente>{
 					
 				}
 				private void DeleteCliente(Cliente user) {
-
+					updateAlert(user);
 					getservice().delete(user.getId());
 					clearFields();
 					loadEntityDetails();

@@ -296,6 +296,277 @@ public enum FxmlView {
         }
     },
     
+    INFORMACAOEMPRESA {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.empresa");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaoempresa.fxml";
+        }
+    },
+    
+    INFORMACAOFUNCIONARIO {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.funcionario");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaofuncionario.fxml";
+        }
+    },
+    
+    INFORMACAOCLIENTE {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.cliente");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocliente.fxml";
+        }
+    },
+    
+    INFORMACAOFORNECEDOR {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.fornecedor");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaofornecedor.fxml";
+        }
+    },
+    
+    INFORMACAOCATEGORIA {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.categoria");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocategoria.fxml";
+        }
+    },
+    
+    INFORMACAOPRODUTO {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.produto");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaoproduto.fxml";
+        }
+    },
+    
+    INFORMACAOCOMPRAS {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.compras");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocompras.fxml";
+        }
+    },
+    
+    INFORMACAOCOMPRASITEM {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.compras");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocomprasitem.fxml";
+        }
+    },
+    
+    INFORMACAOVENDAS {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.vendas");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaovendas.fxml";
+        }
+    },
+    
+    INFORMACAOFORMAPAGAMENTO {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.formapagamento");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaoformapagamento.fxml";
+        }
+    },
+    
+    INFORMACAOCAIXA{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.caixa");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocaixa.fxml";
+        }
+    },
+    
+    INFORMACAOUSUARIO{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.usuario");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaousuario.fxml";
+        }
+    },
+    
+    INFORMACAOCONTASPAGAR{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.contaspagar");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocontaspagar.fxml";
+        }
+    },
+    
+    INFORMACAOCONTASRECEBER{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.contasreceber");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaocontasreceber.fxml";
+        }
+    },
+    
+    INFORMACAOPAGAMENTO{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.pagamento");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaopagamento.fxml";
+        }
+    },
+    
+    INFORMACAOPEDIDOVENDA{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.pedidovenda");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaopedidovenda.fxml";
+        }
+    },
+    
+    INFORMACAORECEBIMENTO{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.recebimento");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaorecebimento.fxml";
+        }
+    },
+    
+    INFORMACAOPEDIDOCOMPRA{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.pedidocompra");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaopedidocompra.fxml";
+        }
+    },
+    
+    INFORMACAOESTOQUE{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.estoque");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaoestoque.fxml";
+        }
+    },
+    
+    
+    
+    INFORMACAOPDV{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.pdv");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/informacaopdv.fxml";
+        }
+    },
+    
+    
+    INFORMACAOFINANCEIRO{
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.pdv");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaofinanceiro.fxml";
+        }
+    },
+    
+    
+    INFORMACAOCONFIGURACAO {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("mov.configuracao");
+        }
+        @Override
+		public String getFxmlFile() {
+            return "/fxml/movimentacaoconfiguracao.fxml";
+        }
+    },
+    
+    
+    
+    
+    
     
     MOVIMENTACAOCONFIGURACAO {
         @Override

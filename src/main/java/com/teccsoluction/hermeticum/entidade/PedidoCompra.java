@@ -11,6 +11,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,15 +37,20 @@ public class PedidoCompra extends Pedido implements Serializable {
 
     private Recebimento recebimentos;
 
-    @ElementCollection(fetch=FetchType.EAGER)
-    @CollectionTable(name = "itens_pedidocompra", joinColumns = @JoinColumn(name = "id"))
-    private List<Item> items = new ArrayList<>();
+//    @ElementCollection(fetch=FetchType.EAGER)
+//    @CollectionTable(name = "itens_pedidocompra", joinColumns = @JoinColumn(name = "id"))
+    
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "pedidocompras_items",
+//            joinColumns = @JoinColumn(name = "idpedidocompra"),
+//            inverseJoinColumns = @JoinColumn(name = "iditem"))
+//    private List<Item> items = new ArrayList<>();
 
     
     //CONSTRUTOR PADRAO
     public PedidoCompra() {
         super();
-        this.items = new ArrayList<Item>();
+//        this.items = new ArrayList<Item>();
 
         
     }

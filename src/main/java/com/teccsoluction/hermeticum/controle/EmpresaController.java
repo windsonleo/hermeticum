@@ -404,7 +404,9 @@ public class EmpresaController extends AbstractController<Empresa>{
 						
 					}
 					private void DeleteEmpresa(Empresa user) {
-
+						
+						
+						updateAlert(user);
 						getservice().delete(user.getId());
 						loadEntityDetails();
 						

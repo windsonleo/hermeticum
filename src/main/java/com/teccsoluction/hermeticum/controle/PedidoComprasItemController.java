@@ -29,12 +29,14 @@ import com.teccsoluction.hermeticum.servico.ClienteServicoImpl;
 import com.teccsoluction.hermeticum.servico.EmpresaServicoImpl;
 import com.teccsoluction.hermeticum.servico.EstoqueServicoImpl;
 import com.teccsoluction.hermeticum.servico.FornecedorServicoImpl;
+import com.teccsoluction.hermeticum.servico.ItemServicoImpl;
 import com.teccsoluction.hermeticum.servico.PedidoCompraServicoImpl;
 import com.teccsoluction.hermeticum.servico.PedidoVendaServicoImpl;
 import com.teccsoluction.hermeticum.servico.ProdutoServicoImpl;
 import com.teccsoluction.hermeticum.servico.UsuarioServicoImpl;
 import com.teccsoluction.hermeticum.util.SituacaoItem;
 import com.teccsoluction.hermeticum.util.StatusPedido;
+import com.teccsoluction.hermeticum.util.UnidadeMedida;
 import com.teccsoluction.hermeticum.view.FxmlView;
 
 import javafx.application.Platform;
@@ -93,6 +95,9 @@ public class PedidoComprasItemController implements Initializable{
 	
 //	@Autowired
 //	private  CaixaServicoImpl caixaService;
+	
+	@Autowired
+	private  ItemServicoImpl itemService;
 	
 	@Autowired
 	private ProdutoServicoImpl ProdutoService;
@@ -346,7 +351,7 @@ public class PedidoComprasItemController implements Initializable{
 //	@FXML
 //    private Label lbhora;
 	
-	
+	private Produto produto;
 	
     
     public PedidoComprasItemController() {
@@ -916,9 +921,16 @@ public void saveAlert(PedidoCompra user){
 		
 		System.out.println("salvando itens no estoque" + pc.getItems());
 		
+		for(Item item : pc.getItems()){
+		
+		itemService.save(item);
+		
+		}
+		
     	estoque.OperacaoEstoqueCompra(pc);
     	estoqueService.edit(estoque);
 		
+    	
     	
     	System.out.println("salvando compra" + pc);
 		PedidoCompraService.save(pc);
@@ -1156,7 +1168,7 @@ public void saveAlert(PedidoCompra user){
 		   
 			if (! isNowFocused) {
 				
-				Produto produto = ProdutoService.getProdutoPorCode(codigobarra.getText());
+				produto = ProdutoService.getProdutoPorCode(codigobarra.getText());
 		        
 		    	codigobarra.setText(produto.getCodebar());
 		    	descricao.setText(produto.getDescricao());
@@ -1173,15 +1185,16 @@ public void saveAlert(PedidoCompra user){
 			   
 			if (! isNowFocused) {
 				
-				Produto produtoaux = ProdutoService.getProdutoPorCode(codigobarra.getText());
+//				Produto produtoaux = ProdutoService.getProdutoPorCode(codigobarra.getText());
+				produto = ProdutoService.getProdutoPorCode(codigobarra.getText());
 				
 				 java.math.BigDecimal qtdaux = new java.math.BigDecimal(qtd.getText());
-				 java.math.BigDecimal tot = produtoaux.getPrecocusto().multiply(qtdaux);
+				 java.math.BigDecimal tot = produto.getPrecocusto().multiply(qtdaux);
 			        
 			        
-		    	codigobarra.setText(produtoaux.getCodebar());
-		    	descricao.setText(produtoaux.getDescricao());
-		    	valorunitario.setText(produtoaux.getPrecocusto().toString());
+		    	codigobarra.setText(produto.getCodebar());
+		    	descricao.setText(produto.getDescricao());
+		    	valorunitario.setText(produto.getPrecocusto().toString());
 		    	valortotal.setText(tot.toString());
 		        
 		        
@@ -1212,13 +1225,17 @@ public void saveAlert(PedidoCompra user){
 	        public void handle(ActionEvent event) {
 
 	        Item it = new Item();
-	        it.setDescricao(descricao.getText());
-	        it.setCodigo(codigobarra.getText());
-	        it.setPrecoUnitario(new java.math.BigDecimal(valorunitario.getText()));
+	        it.setDescricao(produto.getDescricao());
+	        it.setCodigo(produto.getCodebar());
+	        it.setPrecoUnitario(produto.getPrecovenda());
 	        it.setSituacao(SituacaoItem.AGUARDANDO);
+	        it.setNome(produto.getNome());
+	        it.setUn_medida(produto.getUn_medida());
+//	        it.setPrecoUnitario(produto.getPrecocusto());
+	        it.setPrecoCusto(produto.getPrecocusto());
 	       
 	        java.math.BigDecimal qtdaux = new java.math.BigDecimal(qtd.getText());
-	        it.setTotalItem(it.getPrecoUnitario().multiply(qtdaux));
+	        it.setTotalItem(it.getPrecoCusto().multiply(qtdaux));
 	        it.setQtd(qtdaux);
 	        
 	        pc.addItem(it);

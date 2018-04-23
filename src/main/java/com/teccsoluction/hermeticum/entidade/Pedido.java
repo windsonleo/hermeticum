@@ -2,6 +2,7 @@ package com.teccsoluction.hermeticum.entidade;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +18,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -74,6 +77,16 @@ public abstract class Pedido extends BaseEntity   {
     
     @Transient
     private BigDecimal totalpago;
+    
+    
+//    @ElementCollection(fetch=FetchType.EAGER)
+//    @CollectionTable(name = "itens_pedidovenda", joinColumns = @JoinColumn(name = "id"))
+    
+    @OneToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "pedido_itens",
+    joinColumns = @JoinColumn(name = "idpedido"),
+    inverseJoinColumns = @JoinColumn(name = "iditem"))
+    private List<Item> items = new ArrayList<Item>();
 
     
     public Pedido() {

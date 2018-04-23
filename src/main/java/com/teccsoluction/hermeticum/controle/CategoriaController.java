@@ -301,9 +301,9 @@ public class CategoriaController extends AbstractController<Categoria>{
 					
 				}
 				private void DeleteCategoria(Categoria user) {
-
-					getservice().delete(user.getId());
+					
 					updateAlert(user);
+					getservice().delete(user.getId());
 					loadEntityDetails();
 					
 					}

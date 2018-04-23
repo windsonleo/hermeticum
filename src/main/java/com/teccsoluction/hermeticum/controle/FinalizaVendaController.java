@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.teccsoluction.hermeticum.entidade.Categoria;
 import com.teccsoluction.hermeticum.entidade.FormaPagamento;
 import com.teccsoluction.hermeticum.entidade.PedidoVenda;
+import com.teccsoluction.hermeticum.servico.ItemServicoImpl;
 import com.teccsoluction.hermeticum.servico.PedidoVendaServicoImpl;
 import com.teccsoluction.hermeticum.util.EditCell;
 import com.teccsoluction.hermeticum.util.TipoFormaPagamento;
@@ -55,6 +56,11 @@ public class FinalizaVendaController  implements Initializable {
 	
 	@Autowired
 	private  PedidoVendaServicoImpl pedidovendaService;
+	
+	@Autowired
+	private  ItemServicoImpl itemService;
+	
+	
 	
 	@FXML
 	private TableView<FormaPagamento> tabelaforma;

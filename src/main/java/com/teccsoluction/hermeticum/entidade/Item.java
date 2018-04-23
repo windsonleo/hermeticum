@@ -5,30 +5,42 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.UUID;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.teccsoluction.hermeticum.framework.BaseEntity;
 import com.teccsoluction.hermeticum.util.SituacaoItem;
 import com.teccsoluction.hermeticum.util.UnidadeMedida;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 //@EqualsAndHashCode(exclude={"codigo","nome","descricao","precoUnitario","precoCusto","un_medida","totalItem","situacao"})
 //@ToString(includeFieldNames=false,exclude={"id", "codigo","descricao","precoUnitario","precoCusto","un_medida","totalItem","situacao"})
-//@EqualsAndHashCode(exclude={"codigo","nome","descricao","precoUnitario","precoCusto","un_medida","situacao","totalItem"})
-@EqualsAndHashCode
-public  class Item implements Serializable, Comparable<Item>{
+//@EqualsAndHashCode(exclude={"qtd","nome","precoUnitario","precoCusto","situacao","id"})
+//@EqualsAndHashCode(callSuper=true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="ITEM")
+public  class Item extends BaseEntity implements Serializable, Comparable<Item>{
+
+
+
 
 
 
 	private static final long serialVersionUID = 1L;
-
-	private UUID id;
     
     private String codigo;
 
@@ -53,18 +65,14 @@ public  class Item implements Serializable, Comparable<Item>{
     
     
     private BigDecimal qtd;
-
-
-
-
-
-    public Item() {
-//    	super();
-//    	this.un_medida = UnidadeMedida.UND;
-//    	this.situacao = SituacaoItem.AGUARDANDO;
-
-    }
     
+    @ManyToOne
+    private Pedido pedido;
+    
+    @ManyToOne(targetEntity=Estoque.class,optional=true)
+    @JoinColumn(name="estoque_id")
+    private Estoque estoque;
+
     
 
     public Item(Produto produto) {
@@ -150,6 +158,49 @@ public String TotalizacaoPoritem(String qtd){
 //	return true;
 //}
 
+
+/* (non-Javadoc)
+ * @see java.lang.Object#hashCode()
+ */
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+	result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+	result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+	return result;
+}
+
+/* (non-Javadoc)
+ * @see java.lang.Object#equals(java.lang.Object)
+ */
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Item other = (Item) obj;
+	if (codigo == null) {
+		if (other.codigo != null)
+			return false;
+	} else if (!codigo.equals(other.codigo))
+		return false;
+	if (descricao == null) {
+		if (other.descricao != null)
+			return false;
+	} else if (!descricao.equals(other.descricao))
+		return false;
+	if (nome == null) {
+		if (other.nome != null)
+			return false;
+	} else if (!nome.equals(other.nome))
+		return false;
+	return true;
+}
 
 
 }

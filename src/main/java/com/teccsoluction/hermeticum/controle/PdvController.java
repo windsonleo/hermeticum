@@ -26,6 +26,7 @@ import com.teccsoluction.hermeticum.entidade.Usuario;
 import com.teccsoluction.hermeticum.servico.ClienteServicoImpl;
 import com.teccsoluction.hermeticum.servico.EmpresaServicoImpl;
 import com.teccsoluction.hermeticum.servico.EstoqueServicoImpl;
+import com.teccsoluction.hermeticum.servico.ItemServicoImpl;
 import com.teccsoluction.hermeticum.servico.PedidoVendaServicoImpl;
 import com.teccsoluction.hermeticum.servico.ProdutoServicoImpl;
 import com.teccsoluction.hermeticum.servico.UsuarioServicoImpl;
@@ -83,6 +84,9 @@ public class PdvController implements Initializable{
 	
 	@Autowired
 	private  UsuarioServicoImpl usuarioService;
+	
+	@Autowired
+	private  ItemServicoImpl itemService;
 	
 	@Autowired
 	private  EstoqueServicoImpl estoqueService;
@@ -336,7 +340,7 @@ public class PdvController implements Initializable{
 //	@FXML
 //    private Label lbhora;
 	
-	
+	private Produto produto;
 	
     
     public PdvController() {
@@ -963,6 +967,13 @@ public void saveAlert(PedidoVenda user){
         	pv.setStatus(StatusPedido.FINALIZADO);
         	pv.setTotal(pv.CalcularTotal(pv.getItems()));
         	
+        	
+    		for(Item item : pv.getItems()){
+    			
+    			itemService.save(item);
+    			
+    			}
+        	
         	estoque.OperacaoEstoqueVenda(pv);
         	estoqueService.edit(estoque);
         	
@@ -1115,7 +1126,7 @@ public void saveAlert(PedidoVenda user){
 		   
 			if (! isNowFocused) {
 				
-				Produto produto = ProdutoService.getProdutoPorCode(codigobarra.getText());
+				produto = ProdutoService.getProdutoPorCode(codigobarra.getText());
 		        
 		    	codigobarra.setText(produto.getCodebar());
 		    	descricao.setText(produto.getDescricao());
@@ -1132,15 +1143,15 @@ public void saveAlert(PedidoVenda user){
 			   
 			if (! isNowFocused) {
 				
-				Produto produtoaux = ProdutoService.getProdutoPorCode(codigobarra.getText());
+				produto = ProdutoService.getProdutoPorCode(codigobarra.getText());
 				
 				 java.math.BigDecimal qtdaux = new java.math.BigDecimal(qtd.getText());
-				 java.math.BigDecimal tot = produtoaux.getPrecovenda().multiply(qtdaux);
+				 java.math.BigDecimal tot = produto.getPrecovenda().multiply(qtdaux);
 			        
 			        
-		    	codigobarra.setText(produtoaux.getCodebar());
-		    	descricao.setText(produtoaux.getDescricao());
-		    	valorunitario.setText(produtoaux.getPrecovenda().toString());
+		    	codigobarra.setText(produto.getCodebar());
+		    	descricao.setText(produto.getDescricao());
+		    	valorunitario.setText(produto.getPrecovenda().toString());
 		    	valortotal.setText(tot.toString());
 		        
 		        
@@ -1171,10 +1182,13 @@ public void saveAlert(PedidoVenda user){
 	        public void handle(ActionEvent event) {
 
 	        Item it = new Item();
-	        it.setDescricao(descricao.getText());
-	        it.setCodigo(codigobarra.getText());
-	        it.setPrecoUnitario(new java.math.BigDecimal(valorunitario.getText()));
+	        it.setDescricao(produto.getDescricao());
+	        it.setNome(produto.getNome());
+	        it.setCodigo(produto.getCodebar());
+	        it.setPrecoUnitario(produto.getPrecovenda());
 	        it.setSituacao(SituacaoItem.AGUARDANDO);
+	        it.setPrecoCusto(produto.getPrecocusto());
+	        it.setUn_medida(produto.getUn_medida());
 	       
 	        java.math.BigDecimal qtdaux = new java.math.BigDecimal(qtd.getText());
 	        it.setTotalItem(it.getPrecoUnitario().multiply(qtdaux));

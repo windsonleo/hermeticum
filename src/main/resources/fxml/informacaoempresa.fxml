@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <ImageView fx:id="imgviewinfo" fitHeight="66.0" fitWidth="78.0" layoutX="54.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image fx:id="imgsviewinfo" url="@../images/vazio.jpg" />
+               </image>
+            </ImageView>
+            <Circle fx:id="circulo" fill="DIMGRAY" layoutX="87.0" layoutY="53.0" radius="39.0" stroke="#eeeaea" strokeType="INSIDE" />
+         </children>
+      </Pane>
+      <AnchorPane style="-fx-background-color: #333333;">
+         <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane prefHeight="27.0" prefWidth="985.0" style="-fx-background-color: #dc602e;">
+                     <children>
+                        <Label  fx:id="txtlabeltitle" layoutX="39.0" layoutY="5.0" text="Informações da Empresa" textFill="#fcf7f7">
+                           <font>
+                              <Font name="Forte" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: grey;" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <HBox.margin>
+            <Insets bottom="10.0" right="5.0" top="10.0" />
+         </HBox.margin>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+   </padding>
+</HBox>
